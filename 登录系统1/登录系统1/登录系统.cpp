@@ -139,7 +139,7 @@ void add(char name[],char psw[],struct user ux[])//½«×¢²áµÄÓÃ»§ÃûºÍÃÜÂëÊäÈëµ½ÎÄ¼
 {
 	FILE* f1;
 	f1 = fopen("user.txt", "a");
-	fprintf(f1,"%s %s", name, psw);//½«¼üÅÌÊäÈëµÄ¶ÁÈëÎÄ¼ş
+	fprintf(f1,"%s %s\n", name, psw);//½«¼üÅÌÊäÈëµÄ¶ÁÈëÎÄ¼ş
 	fclose(f1);
 }
 
@@ -172,6 +172,7 @@ void inpsw(char psw[])//ÃÜÂëÊäÈë·À¿ú
 	for (i = 0; i < 6; i++)
 	{
 		psw[i] = _getch();
+		psw[6] = '\0';
 		putchar('*');
 
 	}
