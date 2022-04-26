@@ -1,0 +1,12 @@
+#pragma once
+
+#include <stdio.h>
+
+#define ROW 3
+#define COL 3
+
+//≥ı ºªØ∆Â≈Ã
+void Initboard(char board[ROW][COL], int row, int col);
+
+//¥Ú”°∆Â≈Ã
+void Displaybpard(char board[ROW][COL], int row, int col);

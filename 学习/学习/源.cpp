@@ -141,51 +141,77 @@
 //	return -1;
 //}
 
-//本程序输入n，生成动态数组，输出数组内容。
-#include <stdio.h>
-#include <malloc.h>
-int* getarray(int n);
-int main()
-{
-    int* a = NULL, n, i;
-    scanf_s("%d", &n);
-    if (n <= 0) return 0;
-    a = getarray(n);
-    if (a != NULL)
-    {
-        for (i = 0; i < n; i++)
-            printf("%d ", a[i]);
-        free(a);
-    }
-    return 0;
-}
-
-/* 你的代码将被嵌在这里 */
-
-int* getarray(int n)
-{
-    int* a = new int[n];
-    int i;
-    for (i = 0; i < n; i++) {
-        a[i] = i + 1;
-    }
-    return a;
-    delete[] a;
-}
+////本程序输入n，生成动态数组，输出数组内容。
+//#include <stdio.h>
+//#include <malloc.h>
+//int* getarray(int n);
+//int main()
+//{
+//    int* a = NULL, n, i;
+//    scanf_s("%d", &n);
+//    if (n <= 0) return 0;
+//    a = getarray(n);
+//    if (a != NULL)
+//    {
+//        for (i = 0; i < n; i++)
+//            printf("%d ", a[i]);
+//        free(a);
+//    }
+//    return 0;
+//}
+//
+///* 你的代码将被嵌在这里 */
+//
+//int* getarray(int n)
+//{
+//    int* a = new int[n];
+//    int i;
+//    for (i = 0; i < n; i++) {
+//        a[i] = i + 1;
+//    }
+//    return a;
+//    delete[] a;
+//}
 
 /**/
 //#include<stdio.h>
+//
+//void jh(int *x, int *y) 
+//{
+//	int t = *x;
+//	*x = *y;
+//	*y = t;
+//}
+//
 //int main()
 //{
-//
+//	int x = 5, y = 6;
+//	jh(&x, &y);
+//	printf("x=%d,y=%d", x, y);
 //	return 0;
 //}
 
 /**/
 //#include<stdio.h>
+//
+//void cfb(int n)
+//{
+//	int i = 0;
+//	for (i = 1; i <= n; i++)
+//	{
+//		int j = 0;
+//		for (j = 1; j <= i; j++)
+//			printf("%d*%d=%-2d ", i, j, i * j);
+//		printf("\n");
+//	}
+//}
+//
+//
 //int main()
 //{
-//
+//	int n = 0;
+//	scanf_s("%d", &n);
+//	cfb(n);
 //	return 0;
 //}
 
