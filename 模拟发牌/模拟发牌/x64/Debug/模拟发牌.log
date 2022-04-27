@@ -1,0 +1,3 @@
+﻿  模拟发牌.cpp
+D:\计算机学习\gitee\applet\模拟发牌\模拟发牌\模拟发牌.cpp(21,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  模拟发牌.vcxproj -> D:\计算机学习\gitee\applet\模拟发牌\x64\Debug\模拟发牌.exe

@@ -121,7 +121,6 @@ int yhmky(char name[],struct user ux[])
 	fscanf(f1, "%d", &n);
 	for (i = 0; i < 2*n; i++) {
 		fscanf(f1, "%s", ux[i].name);//将文件中用户名和密码输出到程序中
-		//char yh[20] = ux[i].name;
 		if (!strcmp(name, ux[i].name)) {
 			f = 0;
 			break;
