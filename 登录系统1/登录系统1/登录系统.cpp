@@ -131,6 +131,7 @@ int yhmky(char name[],struct user ux[])
 		return 1;
 	}
 	fclose(f1);
+
 	return 0;
 }
 
