@@ -1,43 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS 1
-#include<stdio.h>
-#include<conio.h>
-#include <string.h>
+#include"system.h"
 
-void zym();
-void inpsw(char psw[]);//ÃÜÂëÊäÈë·À¿ú
-int isnum(char st[]);//ÅĞ¶ÏÊÇ·ñÓĞÊı×Ö
-int isalph(char st[]);//ÅĞ¶ÏÊÇ·ñÓĞ×ÖÄ¸
-int ispsw(char st[]);//ÅĞ¶ÏÊÇ·ñÓĞ³ıÁËÊı×Ö£¬×ÖÄ¸ÒÔÍâµÄ×Ö·û
-void readfile(struct user ux[]);//½«ÎÄ¼şÖĞÓÃ»§ÃûºÍÃÜÂëÊä³öµ½³ÌĞòÖĞ
-void textprint(struct user us[]);//²âÊÔÊä³ö
-int yhmky(char name[], struct user ux[]);//ÑéÖ¤ÓÃ»§ÃûÊÇ·ñ¿ÉÓÃ
-void yhm();//ÓÃ»§ÃûÒ³Ãæ
-void add(char name[], char psw[], struct user ux[]);//
-void zccg();
-
-struct user
-{
-	char name[20];//ÓÃ»§Ãû
-	char password[7];//ÃÜÂë6Î»£¬µÚÆßÎ»'\0'£¬×é³É×Ö·û´®
-};
-
-/*
-1.ÓÃ»§ÃûºÍÃÜÂë×¢²á³É¹¦ºó¸ø³öÌáÊ¾²¢·µ»ØÖ÷½çÃæ
-2.ÓÃ»§ÃûºÍÃÜÂëµÇÂ¼³É¹¦ºóÏÔÊ¾×Ó½çÃæ£º
-**********************
-µÇÂ¼³É¹¦£¬ÇëÑ¡Ôñ£º
-1---
-2---
-**********************
-
-3.ÃÜÂëĞŞ¸Ä³É¹¦ºó¸ø³öÌáÊ¾²¢·µ»ØÖ÷½çÃæ
-4.ÓÃÎÄ¼ş´æ·ÅÓÃ»§ÃûºÍÃÜÂë
-5.¶¨Òå½á¹¹ÀàĞÍ±íÊ¾ÓÃ»§ĞÅÏ¢
-6.¸÷¸ö¹¦ÄÜÓÃº¯ÊıÊµÏÖ
-7.×ÔÓÉÑ¡×ö¹¦ÄÜ£º
-ÓÃ»§¹ÜÀí£¨É¾³ıÓÃ»§£¬Ö»ÓĞadminÓĞ¸ÃÈ¨ÏŞ£©
-ÃÜÂë¼ÓÃÜºÍ½âÃÜ
-*/
 int main()
 {
 	struct user us[10];
@@ -45,48 +8,173 @@ int main()
 
 	do {
 		zym();
+		printf("ÇëÑ¡Ôñ£º");
 		scanf("%d", &sr);
 
 		if (sr == 1) {
-		    yhm();
-		    char name[20];
-			char psw[7];
-			do {
-				scanf("%s", name);
-				if (yhmky(name, us) != 1) printf("ÓÃ»§ÃûÒÑ´æÔÚ£¬ÇëÖØĞÂÊäÈë\n");
-				else {
-					printf("ÓÃ»§Ãû¿ÉÓÃ£¬ÇëÉèÖÃÃÜÂë£¨ÃÜÂë±ØĞë6Î»£¬ÓÉ×ÖÄ¸ºÍÊı×Ö×é³É,²»µÃ³öÏÖÌØÊâ·ûºÅ£©\n");
-					break;
-				}
-			} while (1);//ÖØĞÂÊäÈëÓÃ»§Ãû
+			Register(us);//×¢²á³ÌĞò
+		}
 
-			do {
-				printf("ÊäÈëÃÜÂë£º");
-				inpsw(psw);//ÃÜÂë·À¿ú
-				if (isnum(psw) && isalph(psw) && ispsw(psw)) {
-					printf("\nÃÜÂëÉèÖÃ³É¹¦\n");
-					break;
-				}
-				else printf("\nÃÜÂë²»¹æ·¶\n");
-			} while (1);
-			add(name, psw, us);//»¹Î´³É¹¦½«ÎÄ¼şÖĞµÄn¸ü¸Ä£¬Òª¶¨Î»
-			zccg();
+		else if (sr == 2)
+		{
+			Loginp(us);//µÇÂ¼³ÌĞò
+
+		}
+
+		else if (sr == 3)
+		{
+			Changepassword(us);//ĞŞ¸ÄÃÜÂë³ÌĞò
+		}
+
+		else if (sr == 4)
+		{
+			ADLoginp(us);//¹ÜÀíÔ±µÇÂ¼³ÌĞò
 		}
 	} while (sr != 5);
-
-
-
-
-
-
-	
-
-	readfile(us);
-	textprint(us);
-
-
+	printf("\n¸ĞĞ»Ê¹ÓÃ±¾ÏµÍ³£¡\n");
 
 	return 0;
+}
+
+void Register(struct user us[])
+{
+	yhm();
+	char name[20];
+	char psw[7];
+//ÊäÈëÓÃ»§Ãû
+	do {
+		scanf("%s", name);
+		if (yhmky(name, us) != 1) printf("ÓÃ»§ÃûÒÑ´æÔÚ£¬ÇëÖØĞÂÊäÈë\n");
+		else {
+			printf("ÓÃ»§Ãû¿ÉÓÃ£¬ÇëÉèÖÃÃÜÂë£¨ÃÜÂë±ØĞë6Î»£¬ÓÉ×ÖÄ¸ºÍÊı×Ö×é³É,²»µÃ³öÏÖÌØÊâ·ûºÅ£©\n");
+			break;
+		}
+	} while (1);//ÖØĞÂÊäÈëÓÃ»§Ãû
+//ÊäÈëÃÜÂë
+	do {
+		printf("ÊäÈëÃÜÂë£º");
+		inpsw(psw);//ÃÜÂë·À¿ú
+		if (isnum(psw) && isalph(psw) && ispsw(psw)) {
+			printf("\nÃÜÂëÉèÖÃ³É¹¦\n");
+			break;
+		}
+		else printf("\nÃÜÂë²»¹æ·¶\n");
+	} while (1);
+
+	add(name, psw, us);//Ìí¼ÓĞÂÓÃ»§½øÎÄ¼şÖĞ
+	int n;
+	intof(us, &n);//½«ÎÄ¼şÖĞÓÃ»§Ãû¡¢ÃÜÂëÒÔ¡¢ÓÃ»§¸öÊıÊä³öµ½³ÌĞòÖĞ£¬²¢ÇÒÓÃ»§¸öÊı¼ÓÒ»
+	Enterf(us, n);//³ÌĞòÊı×éÂ¼ÈëÎÄ¼ş
+	zccg();//×¢²á³É¹¦
+}
+
+void Loginp(struct user us[])
+{
+		char name[20];
+		char psw[7];
+		char verpsw[7];
+		do {
+			yhm();
+			scanf("%s", name);
+			if (verifyname(name, us,verpsw) != 1) break;//ÑéÖ¤ÓÃ»§Ãû¼°ÃÜÂë
+			else {
+				printf("ÓÃ»§Ãû²»´æÔÚ£¬ÇëÖØĞÂÊäÈë\n");
+			}
+		} while (1);//ÖØĞÂÊäÈëÓÃ»§Ãû
+
+		do {
+			printf("ÊäÈëÃÜÂë£º");
+			inpsw(psw);//ÃÜÂë·À¿ú
+			printf("\n");
+			if (strcmp(psw, verpsw) == 0) {
+				printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
+				break;
+			}
+			else printf("ÃÜÂë´íÎó£¬ÇëÖØĞÂÊäÈë\n");
+		} while (1);
+		logins();//µÇÂ¼³É¹¦½çÃæ
+		int tt;//µÇÂ¼×ÓÒ³Ãæ¹¦ÄÜ
+		do {
+			printf("ÇëÑ¡Ôñ£º");
+			scanf("%d", &tt);
+			if (tt == 1) {
+				Changepassword(us);//ĞŞ¸ÄÃÜÂë³ÌĞò
+			}
+		} while (tt != 1 && tt != 2);
+}
+
+void ADLoginp(struct user us[])
+{
+	char name[20];
+	char psw[7];
+	char verpsw[7];
+	do {
+		yhm();
+		scanf("%s", name);
+		if (admanyz(name, us, verpsw) != 1) break;
+		else {
+			printf("ÓÃ»§Ãû²»´æÔÚ£¬ÇëÖØĞÂÊäÈë\n");
+		}
+	} while (1);//ÖØĞÂÊäÈëÓÃ»§Ãû
+
+	do {
+		printf("ÊäÈëÃÜÂë£º");
+		inpsw(psw);//ÃÜÂë·À¿ú
+		printf("\n");
+		if (strcmp(psw, verpsw) == 0) {
+			printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
+			break;
+		}
+		else printf("ÃÜÂë´íÎó£¬ÇëÖØĞÂÊäÈë\n");
+	} while (1);
+	ADman(name);
+	Admin(us);
+
+}
+
+void Changepassword(struct user us[])
+{
+	char name[20];
+	char psw[7];
+	char verpsw[7];
+	char newpsw[7];
+	char newpswt[7];
+	do {
+		yhm();
+		scanf("%s", name);
+		if (verifyname(name, us, verpsw) != 1) break;//Í¬ÑùÏÈÑéÖ¤ÎÄ¼şÖĞÊÇ·ñÓĞÕâ¸öÓÃ»§
+		else {
+			printf("ÓÃ»§Ãû²»´æÔÚ£¬ÇëÖØĞÂÊäÈë\n");
+		}
+	} while (1);//ÖØĞÂÊäÈëÓÃ»§Ãû
+	do {
+		printf("ÊäÈëÔ­ÃÜÂë£º");
+		inpsw(psw);//ÃÜÂë·À¿ú
+		printf("\n");
+		if (strcmp(psw, verpsw) == 0) {
+			break;
+		}
+		else printf("Ô­ÃÜÂë´íÎó£¬ÇëÖØĞÂÊäÈë\n");
+	} while (1);
+	do {
+		printf("ÊäÈëĞÂÃÜÂë£º");
+		inpsw(newpsw);//ÃÜÂë·À¿ú
+		printf("\n");
+		printf("ÔÙ´ÎÊäÈëĞÂÃÜÂë£º");
+		inpsw(newpswt);
+		printf("\n");
+		if (strcmp(newpsw, newpswt) == 0) {
+			break;
+		}
+		else printf("Á½´ÎÊäÈëµÄĞÂÃÜÂë²»Í¬£¬ÇëÖØĞÂÊäÈë\n");
+	} while (1);
+	int n;
+	readfile(us, &n);//½«ÎÄ¼şÖĞÓÃ»§Ãû¡¢ÃÜÂëÒÔ¡¢ÓÃ»§¸öÊıÊä³öµ½³ÌĞòÖĞ
+
+	revise(name, us, newpsw, n);//ĞŞ¸ÄÃÜÂë
+	Enterf(us, n);//½«³ÌĞòÖĞÓÃ»§Ãû¡¢ÃÜÂëÒÔ¡¢ÓÃ»§¸öÊıÊäÈëµ½ÎÄ¼şÖĞ
+	printf("ÃÜÂëĞŞ¸Ä³É¹¦\n");
+	printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
 }
 
 
@@ -100,17 +188,86 @@ void zym()
 	printf("1.×¢²áĞÂÓÃ»§\n2.µÇÂ¼ÒÑÓĞÕË»§\n3.ĞŞ¸ÄÕË»§ÃÜÂë\n4.¹ÜÀíÔ±µÇÂ¼\n5.ÍË³ö\n");
 	printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
 }
-
 void yhm() 
 {
 	printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
 	printf("ÇëÊäÈëÓÃ»§Ãû :>");
 }
-
 void zccg()
 {
 	printf("×¢²á³É¹¦!\n");
 	printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
+}
+void logins()
+{
+	printf("**********************\n"); 
+	printf("µÇÂ¼³É¹¦£¬ÇëÑ¡Ôñ£º\n"); 
+	printf("1-- ĞŞ¸ÄÃÜÂë\n"); 
+	printf("2-- Íæ¾®×ÖÆå\n"); 
+	printf("**********************\n");
+}
+void ADman(char name[])
+{
+	printf("**********************\n");
+	printf("»¶Ó­¹ÜÀíÔ±:%s\n",name);
+	printf("**********************\n");
+}
+
+void Admin(struct user us[])
+{
+	int n;
+	readfile(us, &n);//½«ÎÄ¼şÖĞÓÃ»§ÃûºÍÃÜÂëÊä³öµ½³ÌĞòÖĞ
+	char name[20];
+	char psw[7];
+
+	do {
+		printf("ÊäÈëĞèÒªÉ¾³ıÓÃ»§µÄÓÃ»§Ãû£º");
+		scanf("%s", name);
+		if (yhmky(name, us) != 1)
+		{
+			printf("ÓÃ»§Ãû´æÔÚ£¬ÊÇ·ñÑ¡ÔñÉ¾³ı\n1.È·¶¨\n2.È¡Ïû\n");
+			break;
+		}
+		else {
+			printf("ÓÃ»§Ãû²»´æÔÚ£¬ÇëÖØĞÂÊäÈë\n");
+		}
+	} while (1);//ÖØĞÂÊäÈëÓÃ»§Ãû
+	int d;
+	printf("ÇëÑ¡Ôñ£º");
+	scanf("%d", &d);
+	if (d == 1)
+	{
+		dele(name, us, &n);
+		//textprint(us, n);//²âÊÔÊä³ö
+		Enterf(us, n);
+		printf("É¾³ı³É¹¦\n");
+	}
+	else if (d == 2) printf("È¡Ïû³É¹¦");
+}
+
+
+int verifyname(char name[], struct user ux[], char psw[])//ÑéÖ¤ÓÃ»§Ãû
+{
+	FILE* f1;
+	int i, n, f = 1;
+	f1 = fopen("user.txt", "r");
+	fscanf(f1, "%d", &n);
+	for (i = 0; i < n; i++) 
+	{
+		fscanf(f1, "%s%s", ux[i].name, ux[i].password);//½«ÎÄ¼şÖĞÓÃ»§Ãû¼°ÃÜÂëÊä³öµ½³ÌĞòÖĞ
+		if (strcmp(name, ux[i].name) == 0) {
+			strcpy(psw, ux[i].password);
+			f = 0;
+			break;
+		}
+	}
+	if (f == 1) {
+		fclose(f1);
+		return 1;
+	}
+	fclose(f1);
+
+	return 0;
 }
 
 int yhmky(char name[],struct user ux[])
@@ -119,14 +276,38 @@ int yhmky(char name[],struct user ux[])
 	int i, n,f=1;
 	f1 = fopen("user.txt", "r");
 	fscanf(f1, "%d", &n);
-	for (i = 0; i < 2*n; i++) {
-		fscanf(f1, "%s", ux[i].name);//½«ÎÄ¼şÖĞÓÃ»§ÃûºÍÃÜÂëÊä³öµ½³ÌĞòÖĞ
+	for (i = 0; i < n; i++) {
+		fscanf(f1, "%s%s", ux[i].name,ux[i].password);//½«ÎÄ¼şÖĞÓÃ»§ÃûÊä³öµ½³ÌĞòÖĞ
 		if (!strcmp(name, ux[i].name)) {
 			f = 0;
 			break;
 		}
 	}
 	if(f==1){
+		fclose(f1);
+		return 1;
+	}
+	fclose(f1);
+
+	return 0;
+}
+
+int admanyz(char name[], struct user ux[], char psw[])//ÑéÖ¤ÓÃ»§Ãû
+{
+	FILE* f1;
+	int i, n, f = 1;
+	f1 = fopen("admin.txt", "r");//´ò¿ª¹ÜÀíÔ±ÎÄ¼ş
+	fscanf(f1, "%d", &n);
+	for (i = 0; i < n; i++)
+	{
+		fscanf(f1, "%s%s", ux[i].name, ux[i].password);//½«ÎÄ¼şÖĞÓÃ»§Ãû¼°ÃÜÂëÊä³öµ½³ÌĞòÖĞ
+		if (strcmp(name, ux[i].name) == 0) {
+			strcpy(psw, ux[i].password);
+			f = 0;
+			break;
+		}
+	}
+	if (f == 1) {
 		fclose(f1);
 		return 1;
 	}
@@ -143,29 +324,92 @@ void add(char name[],char psw[],struct user ux[])//½«×¢²áµÄÓÃ»§ÃûºÍÃÜÂëÊäÈëµ½ÎÄ¼
 	fclose(f1);
 }
 
+void intof(struct user ux[],int *n)//Êä³öÎÄ¼şµ½³ÌĞòµÄ½á¹¹Êı×éÀï
+{
+	FILE* f;
+	int i;
+	f = fopen("user.txt", "r");
+	fscanf(f, "%d", n);
+	int t = *n;
+	t =  t + 1;
+	*n = t;
+	for (i = 0; i < t; i++)
+	{
+		fscanf(f, "%s%s", ux[i].name, ux[i].password);//½«ÎÄ¼şÖĞÓÃ»§ÃûºÍÃÜÂëÊä³öµ½³ÌĞòÖĞ
+	}
+	fclose(f);
+}
 
-void textprint(struct user us[])
+void Enterf(struct user ux[], int n)//Â¼ÈëÎÄ¼ş
+{
+	FILE* f;
+	int i = 0 ;
+	f = fopen("user.txt", "w+");
+	fprintf(f, "%d\n", n);
+	for (i = 0; i < n; i++)
+	{
+		fprintf(f, "%s %s\n", ux[i].name, ux[i].password);//½«ÎÄ¼şÖĞÓÃ»§ÃûºÍÃÜÂëÊä³öµ½³ÌĞòÖĞ
+	}
+	fclose(f);
+}
+
+
+void textprint(struct user us[], int n)//ÊäÈë³¢ÊÔ
 {
 	int i;
-	for (i = 0; i < 4; i++) {
+	for (i = 0; i < n; i++) {
 		printf("%s %s\n", us[i].name, us[i].password);
 	}
 
 }
 
-void readfile(struct user ux[])//½«ÎÄ¼şÖĞÓÃ»§ÃûºÍÃÜÂëÊä³öµ½³ÌĞòÖĞ
+void readfile(struct user ux[],int *n)//½«ÎÄ¼şÖĞÓÃ»§ÃûºÍÃÜÂëÊä³öµ½³ÌĞòÖĞ
 {
 	FILE* f1;
-	int i, n;
+	int i;
 	f1 = fopen("user.txt", "r");
-	fscanf(f1, "%d", &n);
-	for (i = 0; i < n; i++) {
+	fscanf(f1, "%d", n);
+	for (i = 0; i < *n; i++) {
 		fscanf(f1, "%s%s", ux[i].name, ux[i].password);//½«ÎÄ¼şÖĞÓÃ»§ÃûºÍÃÜÂëÊä³öµ½³ÌĞòÖĞ
 	}
 	fclose(f1);
 }
 
+void revise(char name[], struct user us[], char newpsw[],int n )
+{
+	int i;
+	for (i = 0; i < n; i++)
+	{
+		if (strcmp(name, us[i].name) == 0) {
+			strcpy(us[i].password, newpsw);
+			break;
+		}
+	}
+}
 
+void dele(char name[], struct user us[], int* N)
+{
+	int i;
+	int n = *N;
+	for (i = 0; i < n; i++)
+	{
+		if (strcmp(name, us[i].name) == 0) {
+			int t;
+			for (t = i; t < n; t++)
+			{
+				strcpy(us[t].name, us[t + 1].name);
+				strcpy(us[t].password, us[t + 1].password);
+			}
+			strcpy(us[n-1].name,"\0");
+			strcpy(us[n-1].password,"\0");
+			n = n - 1;
+			*N = n;
+			break;
+		}
+	}
+}
+
+//ÃÜÂëÆª
 void inpsw(char psw[])//ÃÜÂëÊäÈë·À¿ú
 {
 	int i;
