@@ -40,3 +40,5 @@ struct user
 	char name[20];//用户名
 	char password[7];//密码6位，第七位'\0'，组成字符串
 };
+
+void game();

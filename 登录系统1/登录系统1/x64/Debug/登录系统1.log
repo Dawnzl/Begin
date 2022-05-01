@@ -1,3 +1,6 @@
 ﻿  登录系统.cpp
-D:\计算机学习\gitee\applet\登录系统1\登录系统1\登录系统.cpp(221,7): warning C4101: “psw”: 未引用的局部变量
+D:\计算机学习\gitee\applet\登录系统1\登录系统1\井字棋.c(1,1): warning C4005: “_CRT_SECURE_NO_WARNINGS”: 宏重定义
+D:\计算机学习\gitee\applet\登录系统1\登录系统1\登录系统.cpp(1): message : 参见“_CRT_SECURE_NO_WARNINGS”的前一个定义
+D:\计算机学习\gitee\applet\登录系统1\登录系统1\登录系统.cpp(7,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+D:\计算机学习\gitee\applet\登录系统1\登录系统1\登录系统.cpp(273,7): warning C4101: “psw”: 未引用的局部变量
   登录系统1.vcxproj -> D:\计算机学习\gitee\applet\登录系统1\x64\Debug\登录系统1.exe

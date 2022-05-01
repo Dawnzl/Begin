@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="井字棋.c" />
     <ClCompile Include="登录系统.cpp" />
   </ItemGroup>
   <ItemGroup>

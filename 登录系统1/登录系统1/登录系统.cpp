@@ -1,8 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include"system.h"
+#include"井字棋.c"
 
 int main()
 {
+	srand(time(NULL));
 	struct user us[10];
 	int sr;
 
@@ -100,6 +102,15 @@ void Loginp(struct user us[])
 			if (tt == 1) {
 				Changepassword(us);//修改密码程序
 			}
+			if (tt == 2)
+			{
+				int x=1;
+				do {
+					game();
+					printf("\n继续（1），退出（0）：");
+					scanf("%d", &x);
+				} while (x != 0);
+			}
 		} while (tt != 1 && tt != 2);
 }
 
@@ -177,7 +188,48 @@ void Changepassword(struct user us[])
 	printf("——————————————————————\n");
 }
 
+void game()
+{
+	char ret = 0;
+	char board[ROW][COL] = { 0 };
+	//初始化棋盘的函数
+	InitBoard(board, ROW, COL);
+	DispalyBoard(board, ROW, COL);
+	//下棋
+	while (1)
+	{
+		PlayerMove(board, ROW, COL);
+		//判断输赢
+		ret = IsWin(board, ROW, COL);
 
+		if (ret != 'C')
+		{
+			break;
+		}
+		DispalyBoard(board, ROW, COL);
+		ComputerMove(board, ROW, COL);
+		//判断输赢
+		ret = IsWin(board, ROW, COL);
+		if (ret != 'C')
+		{
+			break;
+		}
+		DispalyBoard(board, ROW, COL);
+	}
+	if (ret == '*')
+	{
+		printf("玩家赢\n");
+	}
+	else if (ret == '#')
+	{
+		printf("电脑赢\n");
+	}
+	else
+	{
+		printf("平局\n");
+	}
+	DispalyBoard(board, ROW, COL);
+}
 
 
 
