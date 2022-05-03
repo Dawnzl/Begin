@@ -18,5 +18,8 @@
     <ClCompile Include="fname.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="杨政霖题目集.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

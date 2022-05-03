@@ -6,15 +6,10 @@
 int read(char name[][100]);//读取到数组后返回个数
 void print(int i, char name[][100]);
 void paixu(int i,char name[][100]);//英文首字母排序
-void find(char CX, char name[][100], int n);
+//void find(char CX, char name[][100], int n);
 void find2(char name[][100], char CX[], int n);
 
-	/*
-	一个文本文件里存有多种花草树木的英文名称，一个一行，编写程序完成：
-	读取该文件内容
-	编写函数按英文字典顺序排序
-	编写查找函数，输入一种花木的英文名称，查找是否存在该表中。
-	*/
+
 int main()
 {
 
@@ -101,6 +96,7 @@ void find(char CX[], char name[][100], int n)
 
 	free(CX);//释放内存
 }
+
 void find2(char name[][100], char CX[],int n)
 {
 	FILE* f1;
