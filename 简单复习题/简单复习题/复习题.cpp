@@ -182,6 +182,7 @@ int fun(int lim, int aa[MAX]) {
 	}
 	return k;
 }
+
 void main() {
 	int limit, i, sum;
 	int aa[MAX];
