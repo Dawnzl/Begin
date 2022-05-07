@@ -19,13 +19,14 @@ void game()
 	//show 数组在没有布置雷时都是'*'
 	InitBoard(show, ROWS, COLS, '*');
 
-	
-		//设置雷
+	//设置雷
 	SetMine(mine, ROW, COL);
 
 	//DispalyBoard(mine, ROW, COL);//打印棋盘用到9*9的格子
 	DispalyBoard(show, ROW, COL);//打印棋盘用到9*9的格子
 
+	//排查雷
+	FindMine(mine, show, ROW, COL);
 }
 
 int main()

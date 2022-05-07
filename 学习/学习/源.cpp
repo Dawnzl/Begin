@@ -215,7 +215,147 @@
 //	return 0;
 //}
 
+/*文件的读写*/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include<stdio.h>
+//int main()
+//{
+//	FILE* f1;
+//	char name[10], str[20] = "789";
+//	int i;
+//
+//	f1 = fopen("file.txt", "w");
+//	//fprintf(f1, "%s", str);
+//	fseek(f1, 13, 0);//
+//	i = ftell(f1);
+//	return 0;
+//}
+
 /**/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include<stdio.h>
+//#include<stdlib.h>
+//
+//int main()
+//{
+//	int f = void* malloc(unsigned int 100);
+//	void* calloc(unsigned int);
+//	free(f);
+//	return 0;
+//}
+
+/*链表*/
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+
+	//优点：数据元素可以只有扩充
+	//缺点：存取效率不高，只能通过顺序存取
+
+	//单链表 
+	struct LNode
+	{
+		int date;//数据域
+		struct LNode* next;//指针域
+	};
+
+void printflist(struct LNode* h)
+	{
+		//struct 
+
+	}
+
+void appendlist(struct LNode* h)
+{
+	struct LNode* pn, * end;
+	int x;
+
+	end = h->next;//末尾为空时
+
+	do
+	{
+		scanf("%d", &x);
+		if (x != 0)
+		{
+			pn = (struct LNode*)malloc(sizeof(struct LNode));
+			pn->date = x;
+			pn->next = NULL;
+		
+			if (end == NULL)
+			{
+				h->next = pn;
+				end = pn;
+		    }//end为空时进行判断
+			else
+			{
+				end->next = pn;
+				end = pn;
+			}
+		}
+
+	} while (x != 0);
+
+}
+
+void appendlistone(struct LNode* h)
+{
+	struct LNode* pn, * end;
+	int x;
+
+	end = h;
+	while (end->next != NULL)
+	{
+		end = end->next;
+	}
+	do
+	{
+		scanf("%d", &x);
+		if (x != 0)
+		{
+			pn = (struct LNode*)malloc(sizeof(struct LNode));
+			pn->date = x;
+			pn->next = NULL;
+
+			if (end == NULL)
+			{
+				h->next = pn;
+				end = pn;
+			}//end为空时进行判断
+			else
+			{
+				end->next = pn;
+				end = pn;
+			}
+		}
+
+	} while (x != 0);
+
+}
+
+int main()
+{
+	//struct LNode a, b, c;
+	//a.date = 1;          a.next = &b;
+	//b.date = 5;          b.next = &c;
+	//c.date = 2;          c.next = NULL;
+
+	//printf("%d", a.next->next->date);//指针next不能使用运算符. 只能用->
+	struct LNode a, * pn;
+	int n;
+	a.date = 1;          a.next = NULL;
+
+	n = sizeof(struct LNode);
+	pn = (struct LNode*)malloc(n);
+	pn->date = 12;
+	pn->next = NULL;
+	a.next = pn;
+	printf("%d", a.next->date);
+
+	return 0;
+}
+
+/**/
+//#define _CRT_SECURE_NO_WARNINGS 1
 //#include<stdio.h>
 //int main()
 //{
@@ -224,6 +364,7 @@
 //}
 
 /**/
+//#define _CRT_SECURE_NO_WARNINGS 1
 //#include<stdio.h>
 //int main()
 //{
@@ -232,6 +373,7 @@
 //}
 
 /**/
+//#define _CRT_SECURE_NO_WARNINGS 1
 //#include<stdio.h>
 //int main()
 //{
@@ -240,6 +382,7 @@
 //}
 
 /**/
+//#define _CRT_SECURE_NO_WARNINGS 1
 //#include<stdio.h>
 //int main()
 //{
@@ -248,6 +391,7 @@
 //}
 
 /**/
+//#define _CRT_SECURE_NO_WARNINGS 1
 //#include<stdio.h>
 //int main()
 //{
@@ -256,6 +400,7 @@
 //}
 
 /**/
+//#define _CRT_SECURE_NO_WARNINGS 1
 //#include<stdio.h>
 //int main()
 //{
@@ -264,6 +409,7 @@
 //}
 
 /**/
+//#define _CRT_SECURE_NO_WARNINGS 1
 //#include<stdio.h>
 //int main()
 //{
@@ -272,6 +418,70 @@
 //}
 
 /**/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include<stdio.h>
+//int main()
+//{
+//
+//	return 0;
+//}
+
+/**/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include<stdio.h>
+//int main()
+//{
+//
+//	return 0;
+//}
+
+/**/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include<stdio.h>
+//int main()
+//{
+//
+//	return 0;
+//}
+
+/**/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include<stdio.h>
+//int main()
+//{
+//
+//	return 0;
+//}
+
+/**/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include<stdio.h>
+//int main()
+//{
+//
+//	return 0;
+//}
+
+/**/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include<stdio.h>
+//int main()
+//{
+//
+//	return 0;
+//}
+
+/**/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include<stdio.h>
+//int main()
+//{
+//
+//	return 0;
+//}
+
+/**/
+//#define _CRT_SECURE_NO_WARNINGS 1
 //#include<stdio.h>
 //int main()
 //{

@@ -15,3 +15,4 @@
 void InitBoard(char board[ROWS][COLS], int rows, int cols, char set);
 void DispalyBoard(char board[ROWS][COLS], int row, int col);
 void SetMine(char board[ROWS][COLS], int row, int col);
+void FindMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col);
