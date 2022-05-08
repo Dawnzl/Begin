@@ -10,5 +10,5 @@ typedef struct _node
 
 int main()
 {
-
+	Node end;
 }
