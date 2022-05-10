@@ -1,17 +1,18 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
 #include<stdlib.h>
-
-typedef struct _list
-{
-	Node* head;//存储head头指针
-}List;
+#include<malloc.h>
 
 typedef struct _node
 {
 	int date;
 	struct _node *next;
 } Node;
+
+typedef struct _list
+{
+	Node* head;//存储head头指针
+}List;
 
 void add(List* pList, int num);
 void print(List* pList);
@@ -31,6 +32,7 @@ int main()
 
 	} while (num != -1);
 	print(&list);
+	//scanf("%d", &num);
 	return 0;
 }
 
@@ -61,7 +63,7 @@ void print(List* pList)
 	Node* p;
 	for (p = pList->head; p; p = p->next)
 	{
-		printf("%d\t", p->date);
+		printf("%d ", p->date);
 	}
 	printf("\n");
 }
