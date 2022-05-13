@@ -9,4 +9,4 @@
 void Initboard(char board[ROW][COL], int row, int col);
 
 //¥Ú”°∆Â≈Ã
-void Displaybpard(char board[ROW][COL], int row, int col);
+void DisplayBoard(char board[ROW][COL], int row, int col);
