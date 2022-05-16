@@ -60,7 +60,11 @@
 
 //²¡¶¾//
 
+int boom(int n)
+{
 
+	
+}
 
 int main()
 {
