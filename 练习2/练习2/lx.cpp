@@ -60,9 +60,45 @@
 
 //病毒//
 
-int boom(int n)
+int GetCount(int mine[][100],int x, int y)
 {
+	return mine[x - 1][y] +//左
+		mine[x][y - 1] +//下
+		mine[x + 1][y] +//右
+		mine[x][y + 1] ;//上
+}
 
+void boom(int mine[][100], int x, int y,int n)
+{
+	int offset_x = 0;
+	int offset_y = 0;
+	int count = 0;
+	//坐标合法
+	if (x >= 0 && x <= n && y >= 0 && y <= n)
+	{
+		//遍历周围坐标
+		for (offset_x = -1; offset_x <= 1; offset_x++)
+		{
+			for (offset_y = -1; offset_y <= 1; offset_y++)
+			{
+				//如果这个坐标不是病毒
+				if (mine[x + offset_x][y + offset_y] == 0)
+				{
+					//统计周围雷的个数
+					count = GetCount(mine, x + offset_x, y + offset_y);
+					if (count >= 2)//如果超过两边有病毒
+					{
+							mine[x + offset_x][y + offset_y] = 1 ;
+							boom(mine, x + offset_x, y + offset_y, n);
+					}
+					else
+					{
+						mine[x + offset_x][y + offset_y] = 0;
+					}
+				}
+			}
+		}
+	}
 	
 }
 
@@ -71,7 +107,7 @@ int main()
 	int n = 0, m = 0;
 	scanf("%d %d", &n, &m);
 
-	int min[1000][1000] = { 0 };//把培养皿看成一个棋盘
+	int min[100][100] = { 0 };//把培养皿看成一个棋盘
 	int d = 0;//病菌的数量
 
 	int x = 0, y = 0;
@@ -85,10 +121,20 @@ int main()
 
 		} while (x == x1 && y == y1);//相同就重新输入
 		min[x][y] = 1;
+		boom(min, x, y, n);
 		x1 = x; y1 = y;
 	}
+	int i = 0, j = 0, count = 0;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < n; j++)
+		{
+			count += min[i][j];
+		}
+	}
 
-
+	if (min[i][j] == n * n) printf("YES");
+	else printf("NO");
 
 	return 0;
 }
