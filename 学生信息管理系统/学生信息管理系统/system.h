@@ -4,6 +4,12 @@
 #include<stdlib.h>
 #include<string.h>
 
+struct user
+{
+	char name[20];//用户名
+	char password[7];//密码6位，第七位'\0'，组成字符串
+};
+
 struct  student  //学生类型
 {
 	int sid;  //学号
@@ -26,3 +32,29 @@ struct stlist  //学生信息表，链表存放
 	struct stnode* sthead;  //链表指针
 	int len;   //链表中实际的元素数量
 };
+
+void menu();
+void Loginp(struct user us[]);//登录页面
+void Susslogged();//登录成功页面
+
+void make();//创建学生信息
+void add();//增加学生信息
+void look();//浏览学生信息
+void revise();//修改学生信息
+void fine();//查找学生信息
+void del();//删除学生信息	
+void analyse();//输入课程名称分析成绩
+void sort();//排序(学号、姓名、成绩等)
+
+
+int verifyname(char name[], struct user ux[], char psw[]);//验证用户名
+
+
+
+
+
+
+void inpsw(char psw[]);//密码输入防窥
+int isnum(char st[]);//判断是否有数字
+int isalph(char st[]);//判断是否有字母
+int ispsw(char st[]);//判断是否有除了数字，字母以外的字符

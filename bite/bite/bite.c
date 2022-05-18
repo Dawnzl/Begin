@@ -45,22 +45,227 @@
 //}
 
 /**/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include <stdio.h>
+//
+//int main()
+//{
+//		int arr1[10] = { 0 };
+//		int arr2[10] = { 0 };
+//		int i = 0;
+//		for (i = 0; i < 10; i++)
+//		{
+//			scanf("%d", &arr1[i]);
+//		}
+//		for (i = 0; i < 10; i++)
+//		{
+//			scanf("%d", &arr2[i]);
+//		}
+//		for (i = 0; i < 10; i++)
+//		{
+//			int t = arr1[i];
+//			arr1[i] = arr2[i];
+//			arr2[i] = t;
+//		}
+//		printf("arr1:");
+//		for (i = 0; i < 10; i++)
+//		{
+//			printf("%d ", arr1[i]);
+//		}
+//		printf("\n");
+//		printf("arr2:");
+//		for (i = 0; i < 10; i++)
+//		{
+//			printf("%d ", arr2[i]);
+//		}
+//		
+//	return 0;
+//}
+
+/*自研函数*/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include <stdio.h>
+//void init(int arr[], int c)
+//{
+//	int i = 0;
+//	for (i = 0; i < c; i++)
+//	{
+//		arr[i] = 0;
+//	}
+//}
+//void print(int arr[], int c)
+//{
+//	int i = 0;
+//	for (i = 0; i < c; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	printf("\n");
+//}
+//void reverse(int arr[], int c)
+//{
+//	int l = 0;
+//	int r = c - 1;
+//
+//	while (l < r)
+//	{
+//		int t = arr[l];
+//		arr[l] = arr[r];
+//		arr[r] = t;
+//		l++;
+//		r--;
+//	}
+//}
+//int main()
+//{
+//	int arr[10];
+//	init(arr, 10);
+//	print(arr, 10);
+//	int arr2[10] = {1,2,3,4,5,6,7,8,9,0};
+//	reverse(arr2, 10);
+//	print(arr2, 10);
+//	return 0;
+//}
+
+/*MY长度函数*/
+
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include <stdio.h>
+//#include<assert.h>
+//
+//int my_strlen(const char* arr)
+//{
+//	int count = 0;
+//	assert(arr != NULL);
+//	while (*arr)
+//	{
+//		count++;
+//		arr++;
+//	}
+//	return count;
+//}
+//
+//
+//int main()
+//{
+//	const char* str = "aaaaaaa";
+//	int c;
+//	c = my_strlen(str);
+//	printf("%d\n", c);
+//	return 0;
+//}
+
+/*short *只收录两个字节*/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include <stdio.h>
+//
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5 };//int arr[0] ===> 01 00 00 00 | 02.....
+//							  //short =低->高=> 01 00 | 00 00 | 02...
+//	short* p = (short*)arr;//将int四字节强制成两字节short
+//	int i = 0;
+//	for (i = 0; i < 4; i++)
+//	{
+//		*(p + i) = 0;
+//	}
+//
+//	for (i = 0; i < 5; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+/**/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include <stdio.h>
+//
+//int main()
+//{
+//    int a = 0x11223344;//内存中存放是 |44|33|22|11| 
+//    char* pc = (char*)&a;
+//    *pc = 0;
+//    printf("%x\n", a);
+//	return 0;
+//}
+
+/**/
+/*
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
 
-int main()
+void print(int* p, int len)
 {
-
-	return 0;
+	int i = 0;
+	for (i = 0; i < len; i++)
+	{
+		printf("%d ", *(p + i));
+	}
+	printf("\n");
 }
 
-/**/
+int main()
+{
+	int arr[] = { 1,2,3,4,5,6 };
+	int len = sizeof(arr) / sizeof(arr[0]);
+	print(arr, len);
+	return 0;
+}*/
+
+/*水仙花数*/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include <stdio.h>
+//#include<math.h>
+//
+//int main()
+//{
+//	int i;
+//	for (i = 0; i <= 100000; i++)
+//	{
+//		int n = 1;//至少一位数
+//		int t = i;
+//		int sum = 0;
+//
+//		while (t / 10)
+//		{
+//			n++;
+//			t /= 10;
+//		}
+//		t = i;
+//		while(t)
+//		{
+//			sum += pow(t % 10, n);
+//			t /= 10;
+//		}
+//		if (sum == i)
+//		printf("%d ", i);
+//	}
+//	return 0;
+//}
+
+/*喝汽水问题*/
+
 //#define _CRT_SECURE_NO_WARNINGS 1
 //#include <stdio.h>
 //
 //int main()
 //{
 //
+//	int money;//钱数
+//	scanf("%d", &money);
+//	//int total = money;//瓶
+//	//int empty = money;//空瓶
+//
+//	////置换
+//	//while (empty >= 2)
+//	//{
+//	//	total += empty / 2;
+//	//	empty = empty / 2 + empty % 2;
+//	//}
+//	//printf("%d\n", total);
+//	if (money > 0) printf("%d\n", 2 * money - 1);
+//	else printf("0\n");
 //	return 0;
 //}
 
@@ -71,25 +276,21 @@ int main()
 //int main()
 //{
 //
-//	return 0;
-//}
-
-/**/
-//#define _CRT_SECURE_NO_WARNINGS 1
-//#include <stdio.h>
+//		int a = 0;
+//		int n = 0;
+//		int i = 0;
+//		int sum = 0;
+//		int k = 0;
+//		scanf("%d %d", &a, &n);
 //
-//int main()
-//{
-//
-//	return 0;
-//}
-
-/**/
-//#define _CRT_SECURE_NO_WARNINGS 1
-//#include <stdio.h>
-//
-//int main()
-//{
+//		for (i = 0; i < n; i++)
+//		{
+//			k = k * 10 + a;
+//			sum += k;
+//		}
+//	
+//		printf("%d\n", sum);
+//	
 //
 //	return 0;
 //}
@@ -100,47 +301,37 @@ int main()
 //
 //int main()
 //{
+//		int l = 0;
+//		scanf("%d", &l);
+//		int line = l / 2;
+//		int i = 0;
+//		for (i = 0; i < line; i++)
+//		{
+//			int j = 0;
+//			for (j = 0; j < line-1-i; j++)
+//			{
+//				printf(" ");
+//			}
+//			for (j = 0; j < 2 * i + 1; j++)
+//			{
+//				printf("*");
+//			}
+//			printf("\n");
+//		}
 //
-//	return 0;
-//}
-
-/**/
-//#define _CRT_SECURE_NO_WARNINGS 1
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//	return 0;
-//}
-
-/**/
-//#define _CRT_SECURE_NO_WARNINGS 1
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//	return 0;
-//}
-
-/**/
-//#define _CRT_SECURE_NO_WARNINGS 1
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//	return 0;
-//}
-
-/**/
-//#define _CRT_SECURE_NO_WARNINGS 1
-//#include <stdio.h>
-//
-//int main()
-//{
-//
+//		for (i = 0; i < line-1; i++)
+//		{
+//			int j = 0;
+//			for (j = 0; j <= i; j++)
+//			{
+//				printf(" ");
+//			}
+//			for (j = 0; j <2*(line-1-i)-1; j++)
+//			{
+//				printf("*");
+//			}
+//			printf("\n");
+//		}
 //	return 0;
 //}
 
