@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Log.c" />
     <ClCompile Include="system.c" />
     <ClCompile Include="text.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="system.h" />
+    <ClInclude Include="system2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,6 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<time.h>
 
 struct user
 {
@@ -33,9 +34,14 @@ struct stlist  //学生信息表，链表存放
 	int len;   //链表中实际的元素数量
 };
 
+void WriteDate(FILE* date, struct user us[]);//日志时间的写入
+
 void menu();
-void Loginp(struct user us[]);//登录页面
+int Loginp(struct user us[]);//登录页面
 void Susslogged();//登录成功页面
+void MakeMenu();//创建页面
+void FineMenu();//查找页面
+void SortMenu();//排序界面
 
 void make();//创建学生信息
 void add();//增加学生信息

@@ -338,10 +338,24 @@ int main()
 /**/
 //#define _CRT_SECURE_NO_WARNINGS 1
 //#include <stdio.h>
+//#include<assert.h>
+//void my_strcpy(char* dest,const char* src)
+//{
+//	assert(src!=NULL);
+//	assert(dest != NULL);
+//
+//	while (*dest++ = *src++)
+//	{
+//		;
+//	}
+//}
 //
 //int main()
 //{
-//
+//	char arr1[20] = "XXXXXXXXXXXXXXXXXXX";
+//	char arr2[] = "hello bite";
+//	my_strcpy(arr1, arr2);
+//	printf("%s\n", arr1);
 //	return 0;
 //}
 
@@ -351,7 +365,41 @@ int main()
 //
 //int main()
 //{
+//	int num[] = { 1,1,1,2,4,5,6,8,9,7,4,5,11,2 };
+//	int len = sizeof(num) / sizeof(num[0]);
+//	int i = 0, j = 0;
+//	for (i = 0; i < len; i++)
+//	{
+//		for (j = 0; j < len - i - 1; j++)
+//		{
+//			if (num[i] > num[j])
+//			{
+//				int t = num[i];
+//				num[i] = num[j];
+//				num[j] = t;
+//			}
+//		}
+//	}
 //
+//	for (int k = 0; k < len; k++)
+//	{
+//		for (i = 0, j = len - k - 1; i < j; i++)
+//		{
+//			if (num[i] % 2 == 0)
+//			{
+//				int t = num[i];
+//				num[i] = num[j];
+//				num[j--] = t;
+//			}
+//
+//		}
+//	}
+//
+//
+//	for (i = 0; i < len; i++)
+//	{
+//		printf("%d ", num[i]);
+//	}
 //	return 0;
 //}
 

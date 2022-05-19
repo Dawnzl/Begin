@@ -1,5 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS 1
-#include"system.h"
+#include"system2.h"
 
 int main()
 {
@@ -8,8 +8,8 @@ int main()
 	do
 	{
 		Loginp(us);//登录
-		scanf("%d", &input);
 
+		scanf("%d", &input);
 
 		switch (input)
 		{
@@ -38,6 +38,7 @@ int main()
 			sort();//排序(学号、姓名、成绩等)
 			break;
 		case 0:
+			Out(us);
 			printf("欢迎再次使用本系统!\n");
 			break;
 		default:
