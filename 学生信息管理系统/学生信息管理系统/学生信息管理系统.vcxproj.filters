@@ -21,14 +21,8 @@
     <ClCompile Include="system.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Log.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="system.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="system2.h">
       <Filter>头文件</Filter>
     </ClInclude>

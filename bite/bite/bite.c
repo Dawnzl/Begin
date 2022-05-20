@@ -403,25 +403,72 @@ int main()
 //	return 0;
 //}
 
-/**/
+/*指针数组*/
+//指针变量构成的数组
 //#define _CRT_SECURE_NO_WARNINGS 1
 //#include <stdio.h>
 //
 //int main()
 //{
+//	int arr1[4] = { 1,2,3,4 };
+//	int arr2[4] = { 2,3,4,5 };
+//	int arr3[4] = { 3,4,5,6 };
 //
+//	int* parr[3] = { arr1,arr2,arr3 };
+//	int i = 0;
+//	for (i = 0; i < 3; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < 4; j++)
+//		{
+//			parr[i][j];
+//		}
+//		printf("\n");
+//	}
 //	return 0;
 //}
 
-/**/
-//#define _CRT_SECURE_NO_WARNINGS 1
-//#include <stdio.h>
-//
-//int main()
+/*返回一个数值的二进制中的1的个数*/
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+
+//int CountNumof1(int n)
 //{
-//
-//	return 0;
-//}
+//	int count = 0;
+//	while (n)
+//	{
+//		if ((n % 2) == 1)
+//		{
+//			count++;
+//		}
+//		n /= 2;
+//	}
+//	return count;
+//}//-1无法使用
+
+int CountNumof1(int n)
+{
+	int count = 0;
+	while (n)
+	{
+		if ((n % 2) == 1)
+		{
+			count++;
+		}
+		n /= 2;
+	}
+	return count;
+}
+
+int main()
+{
+	int num = 0;
+	scanf("%d", &num);
+	int n = CountNumof1(num);
+	printf("%d\n", n);
+	return 0;
+}
 
 /**/
 //#define _CRT_SECURE_NO_WARNINGS 1
