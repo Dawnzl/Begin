@@ -430,10 +430,10 @@ int main()
 
 /*返回一个数值的二进制中的1的个数*/
 
-#define _CRT_SECURE_NO_WARNINGS 1
-#include <stdio.h>
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include <stdio.h>
 
-//int CountNumof1(int n)
+//int CountNumof1(unsigned int n)
 //{
 //	int count = 0;
 //	while (n)
@@ -447,48 +447,129 @@ int main()
 //	return count;
 //}//-1无法使用
 
-int CountNumof1(int n)
-{
-	int count = 0;
-	while (n)
-	{
-		if ((n % 2) == 1)
-		{
-			count++;
-		}
-		n /= 2;
-	}
-	return count;
-}
+//int CountNumof1(int n)
+//{
+//	int i = 0;
+//	int count = 0;
+//	for (i = 0; i < 32; i++)
+//	{
+//		if (((n >> i) & 1) == 1)
+//		{
+//			count++;
+//		}
+//	}
+//	return count;
+//}
+//n = -1
+//100000000000000000000000000000000001  原码
+//111111111111111111111111111111111110 反码
+//111111111111111111111111111111111111 补码
+//111111111111111111111111111111111110 
+
+
+//int CountNumof1(int n)
+//{
+//	int count = 0;
+//	while (n)
+//	{
+//		n = n & (n - 1);
+//		count++;
+//	}
+//	return count;
+//}
+//n = n & (n-1)
+//n=15
+// 每一次&都会消除补码的一个1
+//1111 n 
+//1110 n-1
+//1110 &后n
+//1101 n-1
+//1100 &后n
+//1011 n-1
+//1000 &后n
+//0111 n-1
+//0000 &后n
+
+
+//int main()
+//{
+//	int num = 0;
+//	scanf("%d", &num);
+//	int n = CountNumof1(num);
+//	printf("%d\n", n);
+//	return 0;
+//}
+
+/*
+两个int（32位）整数m和n的二进制表达中，有多少个位bit不同？*/
+//#define _CRT_SECURE_NO_WARNINGS 1
+//#include <stdio.h>
+//
+//int count_diff_bit1(int m, int n)
+//{
+//	int count = 0;
+//	int i = 0;
+//	for (i = 0; i < 32; i++)
+//	{
+//		if ((((m >> i) & 1)) != ((m >> i) & 1))
+//		{
+//			count++;
+//		}
+//	}
+//	return count;
+//}
+//
+////异或
+//int count_diff_bit(int m, int n)
+//{
+//	int count = 0;
+//	//^异或操作符
+//	//相同为0，相异为1
+//	int ret = m ^ n;
+//	//获得一串已经相异或者相同的二进制数
+//	//统计ret有多少个1则可以得出结果
+//	while (ret)
+//	{
+//		ret = ret & (ret - 1);
+//		count++;
+//	}
+//
+//	return count;
+//}
+//
+//int main()
+//{
+//	int m = 0;
+//	int n = 0;
+//	scanf("%d %d", &m, &n);
+//	int ret = count_diff_bit(m, n);
+//	printf("%d\n", ret);
+//	return 0;
+//}
+
+/**/
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
 
 int main()
 {
+	int i = 0;
 	int num = 0;
 	scanf("%d", &num);
-	int n = CountNumof1(num);
-	printf("%d\n", n);
+
+	//获得奇数位的数字
+	for (i = 30; i >= 0; i -= 2)
+	{
+		printf("%d ", (num >> i) & 1);//num>>30是第一个奇数位
+	}
+
+	//获得偶数位的数字
+	for (i = 31; i >= 0; i -= 2)
+	{
+		printf("%d ", (num >> i) & 1);//num>>31是第一个偶数位
+	}
 	return 0;
 }
-
-/**/
-//#define _CRT_SECURE_NO_WARNINGS 1
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//	return 0;
-//}
-
-/**/
-//#define _CRT_SECURE_NO_WARNINGS 1
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//	return 0;
-//}
 
 /**/
 //#define _CRT_SECURE_NO_WARNINGS 1
