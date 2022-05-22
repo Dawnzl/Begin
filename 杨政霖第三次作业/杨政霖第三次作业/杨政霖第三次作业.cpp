@@ -234,7 +234,7 @@ bool MergeRight(int arr[ROW][ROW])
 			{
 				arr[i][index1] = arr[i][j];
 				arr[i][j] = 0;
-				index1++;
+				index1--;
 			}
 		}
 	}
@@ -330,7 +330,7 @@ bool MergeDown(int arr[ROW][ROW])
 			{
 				arr[indey1][j] = arr[i][j];
 				arr[i][j] = 0;
-				indey1++;
+				indey1--;
 			}
 		}
 	}
