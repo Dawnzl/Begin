@@ -35,10 +35,10 @@ struct stlist  //学生信息表，链表存放
 	int len;   //链表中实际的元素数量
 };
 
-void WriteDate(FILE* date, struct user us[]);//日志时间的写入
+void WriteDate(FILE* date, char name[]);//日志时间的写入
 
 void menu();
-void Loginp(struct user us[]);//登录页面
+void Loginp(struct user us[], char name[]);//登录页面
 void Susslogged();//登录成功页面
 void MakeMenu();//创建页面
 void FineMenu();//查找页面
@@ -52,7 +52,11 @@ void fine();//查找学生信息
 void del();//删除学生信息	
 void analyse();//输入课程名称分析成绩
 void sort();//排序(学号、姓名、成绩等)
-void Out(struct user us[]);//结束保存日志
+void Out(char name[]);//结束保存日志
+void Enterf(struct student stu[], int n);//录入文件
+void addstd(struct student stu[], int num);//将注册的用户名和密码输入到文件中
+void addread(struct student stu[], int* num);//将文件中学生信息输出到程序中//添加版
+
 
 int verifyname(char name[], struct user ux[], char psw[]);//验证用户名
 

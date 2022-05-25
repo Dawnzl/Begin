@@ -4,17 +4,19 @@
 int main()
 {
 	struct user us[10];
+	char name[20];
 	int input = 0;
+	Loginp(us,name);//登录
+
 	do
 	{
-		Loginp(us);//登录
-
+		Menu();
 		scanf("%d", &input);
 
 		switch (input)
 		{
 		case 1:
-			make();//创建学生信息
+			make();//创建学生信息（会覆盖掉原先的学生信息）
 			break;
 		case 2:
 			add();//增加学生信息
@@ -38,7 +40,7 @@ int main()
 			sort();//排序(学号、姓名、成绩等)
 			break;
 		case 0:
-			Out(us);
+			Out(name);
 			printf("欢迎再次使用本系统!\n");
 			break;
 		default:

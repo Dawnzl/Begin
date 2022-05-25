@@ -1,1 +1,5 @@
-﻿  学生信息管理系统.vcxproj -> D:\计算机学习\gitee\applet\学生信息管理系统\x64\Debug\学生信息管理系统.exe
+﻿  system.c
+D:\计算机学习\gitee\applet\学生信息管理系统\学生信息管理系统\system.c(368,18): warning C4013: “readfile”未定义；假设外部返回 int
+D:\计算机学习\gitee\applet\学生信息管理系统\学生信息管理系统\system.c(518,6): warning C4101: “n”: 未引用的局部变量
+D:\计算机学习\gitee\applet\学生信息管理系统\学生信息管理系统\system.c(544,18): warning C4013: “_getch”未定义；假设外部返回 int
+  学生信息管理系统.vcxproj -> D:\计算机学习\gitee\applet\学生信息管理系统\x64\Debug\学生信息管理系统.exe

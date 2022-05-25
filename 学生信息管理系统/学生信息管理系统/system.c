@@ -8,9 +8,8 @@ void menu()
 	printf("=============================================\n");
 }
 //登录页面
-void Loginp(struct user us[])
+void Loginp(struct user us[],char name[])
 {
-	char name[20];
 	char psw[7];
 	char verpsw[7];
 	do {
@@ -33,9 +32,8 @@ void Loginp(struct user us[])
 		else printf("密码错误，请重新输入\n");
 	} while (1);
 	FILE* date;
-	int n;
 	date = fopen("LOG.txt", "a+");//日志
-	WriteDate(date, us);
+	WriteDate(date, name);
 	fclose(date);
 	Susslogged();
 }
@@ -67,6 +65,10 @@ int verifyname(char name[], struct user ux[], char psw[])
 void Susslogged()
 {
 	printf("登录成功!\n");
+}
+
+void Menu()
+{
 	printf("=============================================\n");
 	printf("功能选项：\n");
 	printf("	0---保存信息并退出\n");
@@ -74,20 +76,19 @@ void Susslogged()
 	printf("	3--- 浏览学生信息 4--- 修改学生信息\n");
 	printf("	5--- 查找学生信息 6--- 删除学生信息\n");
 	printf("	7--- 输入课程名称分析成绩\n");
-	printf("	8--- 排序(学号、姓名、成绩等)\n");	
+	printf("	8--- 排序(学号、姓名、成绩等)\n");
 	printf("=============================================\n");
 	printf("请输入选项（0--7）:");
-
 }
 
 //开始日期
-void WriteDate(FILE* date, struct user us[])
+void WriteDate(FILE* date, char name[])
 {
 	time_t timep;
 	struct tm* p;
 	time(&timep);
 	p = gmtime(&timep);
-	fprintf(date, "管理员%s于", us->name);//管理员名字
+	fprintf(date, "管理员%s于", name);//管理员名字
 	fprintf(date, "%d", p->tm_year + 1900); //获取年
 	fputs("\\", date);
 	fprintf(date, "%d", p->tm_mon + 1); //获取月
@@ -106,13 +107,13 @@ void WriteDate(FILE* date, struct user us[])
 }
 
 //结束日期
-void OutDate(FILE* date, struct user us[])
+void OutDate(FILE* date, char name[])
 {
 	time_t timep;
 	struct tm* p;
 	time(&timep);
 	p = gmtime(&timep);
-	fprintf(date, "管理员%s于", us->name);//管理员名字
+	fprintf(date, "管理员%s于", name);//管理员名字
 	fprintf(date, "%d", p->tm_year + 1900); //获取年
 	fputs("\\", date);
 	fprintf(date, "%d", p->tm_mon + 1); //获取月
@@ -149,10 +150,9 @@ void MakeMenu()
 void make()
 {
 	MakeMenu();
-
 	int inp;
 
-	do
+	//do
 	{
 		scanf("%d", &inp);
 		printf("\n");
@@ -167,44 +167,242 @@ void make()
 				int num;
 				scanf("%d", &num);
 
-				printf("请按照 学号 姓名 性别 语文 数学 英语的顺序输入每个学生的信息\n");
+				printf("请按照 学号  姓名  性别  语文  数学  英语的顺序输入每个学生的信息\n");
 				int i = 0;
 				for (i = 0; i < num; i++)
 				{
 					printf("请输入：");
-					scanf("%d %s %c %d %d %d", stu->sid, stu->name, stu->sex, stu->score[0], stu->score[1], stu->score[2]);
+					scanf("%d %s %c %d %d %d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);
 				}
 
-				printf("创建成功！\n");
-				printf("按回车键继续输入，按任意键返回主界面\n");
-				getchar();
-				in = getchar();
 
-			} while (in == '\n');
+
+				Enterf(stu, num);
+
+
+
+				printf("创建成功！\n");
+				printf("按回车键继续输入，按0键返回主界面\n");
+				
+				scanf("%c", &in);
+				if (in == '0') break;                                                            //bug
+
+			} while (in != '1' && in == '\n');
 		
 		}
 		else if (inp == 2)
 		{
 			printf("你选择了从文件读取数据\n");
+
+
+
+
+
+
+
+
+
+
+
 		}
 		else printf("输入有误，请重新输入\n");
 
 
-	} while (inp != 1 || inp != 2);
+	}// while (inp != 1 || inp != 2);
 
+
+}
+
+//录入文件
+void Enterf(struct student stu[], int n)//n是自定义的
+{
+	FILE* f;
+	int i = 0;
+	f = fopen("student.txt", "w+");//覆盖原有
+	fprintf(f, "%d\n", n);//传入n
+	for (i = 0; i < n; i++)
+	{
+		fprintf(f, "%d %s %c %d %d %d\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+	}
+	fclose(f);
+}
+
+//输入尝试
+void textprint(struct student stu[], int n)
+{
+	int i;
+	for (i = 0; i < n; i++) {
+		printf("%d %s %c %d %d %d\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+	}
 
 }
 
 //增加学生信息
 void add()
 {
+	printf("**********学生信息的添加********** \n");
+	printf("功能选项：\n");
+	printf("-------------------------------------------------\n");
+	printf("             1--- 从键盘输入数据信息             \n");
+	printf("             2--- 从文件读取数据信息             \n");
+	printf("-------------------------------------------------\n");
+	printf("请输入选项（1--2）：");
+	int inp;
+
+	//do
+	{
+		scanf("%d", &inp);
+		printf("\n");
+		if (inp == 1)
+		{
+			char in;
+			struct  student stu[100]; //学生类型
+		//	do
+			{
+				printf("你选择了从键盘输入数据\n");
+				printf("请输入学生的人数：");
+				int num;
+				scanf("%d", &num);
+
+				printf("请按照  学号   姓名   性别  语文  数学  英语的顺序输入每个学生的信息\n");
+				int i = 0;
+				int n = 0;
+				for (i = 0; i < num; i++)
+				{
+					printf("请输入：");
+					scanf("%d %s %c %d %d %d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);
+				}
+
+				addstd(stu, num);//添加进文件   stu里先存放了
+				addread(stu, &num);//学生总数                                      记得测试
+				Enterf(stu, num);//
+
+
+
+				printf("创建成功！\n");
+				printf("按回车键继续输入，按0键返回主界面\n");
+
+				scanf("%c", &in);
+			//	if (in == '0') break;                                                            //bug
+
+			}// while (in != '1' && in == '\n');
+
+		}
+		else if (inp == 2)
+		{
+			printf("你选择了从文件读取数据\n");
+
+
+
+
+
+
+
+
+
+
+
+		}
+		else printf("输入有误，请重新输入\n");
+
+
+	}// while (inp != 1 || inp != 2);
+
 
 }
+
+void addstd(struct student stu[],int num)//将注册的用户名和密码输入到文件中
+{
+	FILE* f1;
+	f1 = fopen("student.txt", "a");//将键盘输入的读入文件
+	int i = 0;
+	for (i = 0; i < num; i++)
+	{
+		fprintf(f1, "%d %s %c %d %d %d\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+	}
+	fclose(f1);
+}
+
+//将文件中学生信息输出到程序中//添加版
+void addread(struct student stu[], int* num)//学生数据末尾下标
+{
+	FILE* f1;
+	int i, n;
+	f1 = fopen("student.txt", "r");
+	fscanf(f1, "%d", &n);
+	*num = n + *num;                  //程序中学生的个数   +   文件中学生的个数
+	for (i = 0; i < *num; i++)
+	{
+		fscanf(f1, "%d%s%c%d%d%d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);//将文件中用户名和密码输出到程序中
+	}
+	fclose(f1);
+}
+
+////添加信息
+//void Enterfadd(struct student stu[], int* n, int num)//n是自定义的
+//{
+//	FILE* f;
+//	int i = 0;
+//	f = fopen("student.txt", "w+");//覆盖原有
+//	fscanf(f, "%d", n);
+//	int t = *n;
+//	t = t + num;
+//	*n = t;
+//	for (i = 0; i < n; i++)
+//	{
+//		fprintf(f, "%d %s %c %d %d %d\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+//	}
+//	fclose(f);
+//}
+
+
+
 //浏览学生信息
 void look()
 {
+	printf("-------------------------------------------------\n");
+	printf("                  学生信息总览                   \n");
+	printf("-------------------------------------------------\n");
+	printf("    学 号   姓 名   性别  语文  数学  英语\n");
+	struct  student stu[100]; //学生类型
+	int n = readfile(stu);
+	int i = 0;
+	for (i = 0; i < n; i++)
+	{
+		printf("    %d    %s     %c    %d    %d    %d\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+	}
 
 }
+
+//将文件中学生信息输出到程序中//输出版
+int readfile(struct student stu[])
+{
+	FILE* f1;
+	int i, n;
+	f1 = fopen("student.txt", "r");
+	fscanf(f1, "%d", &n); 
+	for (i = 0; i < n; i++) {
+		fscanf(f1, "%d %s %c %d %d %d\n", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);//将文件中用户名和密码输出到程序中
+	}
+	fclose(f1);
+	return n;
+}
+
+
+//将文件中用户名和密码输出到程序中
+//void readfile(struct student stu[])
+//{
+//	FILE* f1;
+//	int i, n;
+//	f1 = fopen("student.txt", "r");
+//	fscanf(f1, "%d", &n);
+//	for (i = 0; i < n; i++) {
+//		fscanf(f1, "%d %s %c %d %d %d\n", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);//将文件中用户名和密码输出到程序中
+//	}
+//	fclose(f1);
+//}
+
+
 //修改学生信息
 void revise()
 {
@@ -314,14 +512,14 @@ void sort()
 }
 
 //结束保存时间
-void Out(struct user us[])
+void Out(char name[])
 {
 	FILE* date;
 	int n;
 	date = fopen("LOG.txt", "a+");//日志
 
 	//用链表保存开始时间
-	OutDate(date, us);
+	OutDate(date, name);
 	fclose(date);
 
 }
