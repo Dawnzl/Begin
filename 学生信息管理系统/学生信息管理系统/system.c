@@ -152,7 +152,7 @@ void make()
 	MakeMenu();
 	int inp;
 
-	//do
+	do
 	{
 		scanf("%d", &inp);
 		printf("\n");
@@ -167,7 +167,7 @@ void make()
 				int num;
 				scanf("%d", &num);
 
-				printf("请按照 学号  姓名  性别  语文  数学  英语的顺序输入每个学生的信息\n");
+				printf("请按照 学号 姓名 性别 语文 数学 英语   的顺序输入每个学生的信息\n");
 				int i = 0;
 				for (i = 0; i < num; i++)
 				{
@@ -182,10 +182,11 @@ void make()
 
 
 				printf("创建成功！\n");
-				printf("按回车键继续输入，按0键返回主界面\n");
-				
-				scanf("%c", &in);
-				if (in == '0') break;                                                            //bug
+				printf("按回车键继续输入，按任意键返回主界面\n");
+
+				getchar();
+				in = getchar();
+				if (in != '\n') break;                                                       //bug
 
 			} while (in != '1' && in == '\n');
 		
@@ -208,7 +209,7 @@ void make()
 		else printf("输入有误，请重新输入\n");
 
 
-	}// while (inp != 1 || inp != 2);
+	} while (inp != 1 || inp != 2);
 
 
 }
@@ -257,7 +258,7 @@ void add()
 		{
 			char in;
 			struct  student stu[100]; //学生类型
-		//	do
+			do
 			{
 				printf("你选择了从键盘输入数据\n");
 				printf("请输入学生的人数：");
@@ -274,18 +275,23 @@ void add()
 				}
 
 				addstd(stu, num);//添加进文件   stu里先存放了
-				addread(stu, &num);//学生总数                                      记得测试
-				Enterf(stu, num);//
+				//textprint(stu, num);
 
+				addread(stu, &num);//学生总数                                      记得测试
+
+
+				Enterf(stu, num);//
+				//textprint(stu, num);
 
 
 				printf("创建成功！\n");
-				printf("按回车键继续输入，按0键返回主界面\n");
+				printf("按回车键继续输入，按任意键返回主界面\n");
 
-				scanf("%c", &in);
-			//	if (in == '0') break;                                                            //bug
+				getchar();
+				in = getchar();
+				if (in != '\n') break;                                                     
 
-			}// while (in != '1' && in == '\n');
+			} while (in != '1' && in == '\n');
 
 		}
 		else if (inp == 2)
@@ -311,7 +317,7 @@ void add()
 
 }
 
-void addstd(struct student stu[],int num)//将注册的用户名和密码输入到文件中
+void addstd(struct student stu[],int num)//将学生的信息输入到文件中
 {
 	FILE* f1;
 	f1 = fopen("student.txt", "a");//将键盘输入的读入文件
@@ -333,7 +339,7 @@ void addread(struct student stu[], int* num)//学生数据末尾下标
 	*num = n + *num;                  //程序中学生的个数   +   文件中学生的个数
 	for (i = 0; i < *num; i++)
 	{
-		fscanf(f1, "%d%s%c%d%d%d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);//将文件中用户名和密码输出到程序中
+		fscanf(f1, "%d %s %c %d %d %d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);//将文件中用户名和密码输出到程序中
 	}
 	fclose(f1);
 }
@@ -402,12 +408,139 @@ int readfile(struct student stu[])
 //	fclose(f1);
 //}
 
+void ReviseMenu()
+{
+	printf("**********学生信息的修改**********\n");
+
+}
 
 //修改学生信息
 void revise()
 {
+	ReviseMenu();
+	struct student stu[100];
+	char in;
+
+	printf("\n");
+	do
+	{
+
+
+		printf("\n请按照学号查找\n");
+
+		int n = readfile(stu);//把学生信息输入到程序中
+
+		revisestu(stu, n);//修改成功
+
+		Enterf(stu, n);//录入修改信息
+
+		printf("按回车键继续输入，按任意键返回主界面\n");
+
+		getchar();
+		in = getchar();
+		if (in != '\n') break;                                                       
+
+	} while (in != '1' && in == '\n');
+
+		
 
 }
+
+void revisestu(struct student stu[], int n)
+{
+	int i = 0;
+	int f = 1;
+	int num;//学号
+	char in;
+
+	do
+	{
+		do
+		{
+			printf("请输入学生的学号：");
+			scanf("%d", &num);
+
+			for (i = 0; i < n; i++)
+			{
+
+				if (num == stu[i].sid)
+				{
+					printf("学生信息：%d %s %c %d %d %d\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+					//textprint(stu, n);
+					printf("请选择修改项目：姓名（1），性别（2），语文成绩（3），数学成绩（4），英语成绩（5）");
+					int input = 0;
+
+					do
+					{
+						printf("请选择：");
+						scanf("%d", &input);
+						if (input == 1)
+						{
+							printf("将姓名“%s”修改成：", stu[i].name);
+							char name[20];
+							scanf("%s", name);
+							strcpy(stu[i].name, name);
+						}
+
+						else if (input == 2)//未判断只能输入M 或者W
+						{
+							getchar();//消除回车
+							printf("将性别“%c”修改成：", stu[i].sex);
+							char sex;
+							scanf("%c", &sex);
+							stu[i].sex = sex;
+						}
+
+						else if (input == 3)
+						{
+							printf("将语文成绩“%d”修改成：", stu[i].score[0]);
+							int sco;
+							scanf("%d", &sco);
+							stu[i].score[0] = sco;
+						}
+
+						else if (input == 4)
+						{
+							printf("将数学成绩“%d”修改成：", stu[i].score[1]);
+							int sco;
+							scanf("%d", &sco);
+							stu[i].score[1] = sco;
+						}
+
+						else if (input == 5)
+						{
+							printf("将英语成绩“%d”修改成：", stu[i].score[2]);
+							int sco;
+							scanf("%d", &sco);
+							stu[i].score[2] = sco;
+						}
+						else printf("输入错误，请重新输入\n");
+
+					} while (input < 1 || input > 5);
+
+					f = 0;
+					printf("修改成功！\n");
+					printf("修改后的信息：%d %s %c %d %d %d\n\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+
+					break;
+				}
+			}
+			if (f) printf("未找到此学生信息，请重新输入\n");
+
+			getchar();
+
+		} while (f);
+		printf("按回车键继续修改，按任意键返回主界面\n");
+		in = getchar();
+		if (in != '\n') break;
+
+	} while (in != '1' && in == '\n');
+	
+
+
+
+}
+
 
 
 void FineMenu()
@@ -426,7 +559,7 @@ void FineMenu()
 void fine()
 {
 	FineMenu();
-
+	struct student stu[100];
 	int inp;
 	do
 	{
@@ -437,19 +570,22 @@ void fine()
 			char in;
 			do
 			{
-				int num;//学号
 				printf("\n你选择了按照学号查找，请继续\n");
 				printf("请输入学生的学号：");
-				scanf("%d", &num);
 
 				//搜索（未完成）
+				int n = readfile(stu);//把学生信息输入到程序中
+
+				finestunum(stu, n);
 
 
-				printf("按回车键继续输入，按任意键返回主界面\n");
+				printf("按回车键继续查找，按任意键返回主界面\n");
 				getchar();
-				in = getchar();
 
-			} while (in == '\n');
+				in = getchar();
+				if (in != '\n') break;
+
+			} while (in != '1' && in == '\n');
 
 		}
 		else if (inp == 2)
@@ -459,17 +595,20 @@ void fine()
 			{
 				char name[20];
 				printf("\n你选择了按照姓名查找，请继续\n");
-				printf("请输入学生的学号：");
-				scanf("%s", name);
+				printf("请输入学生的姓名：");
 
-				//搜索（未完成）
+				int n = readfile(stu);//把学生信息输入到程序中
+
+				finestuname(stu, n);
 
 
-				printf("按回车键继续输入，按任意键返回主界面\n");
+				printf("按回车键继续查找，按任意键返回主界面\n");
+
 				getchar();
 				in = getchar();
+				if (in != '\n') break;
 
-			} while (in == '\n');
+			} while (in != '1' && in == '\n');
 
 
 
@@ -479,6 +618,62 @@ void fine()
 
 	} while (inp != 1 || inp != 2);
 }
+
+void finestunum(struct student stu[],int n)
+{
+	int i = 0;
+	int f = 1;
+	int num;//学号
+
+	do
+	{
+		scanf("%d", &num);
+		for (i = 0; i < n; i++)
+		{
+
+			if (num == stu[i].sid)
+			{
+				printf("学生信息：%d %s %c %d %d %d\n\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+				f = 0;
+				break;
+			}
+		}
+		if(f) printf("未找到此学生信息，请重新输入\n");
+
+	} while (f);
+
+
+
+}
+void finestuname(struct student stu[], int n)
+{
+	int i = 0;
+	int f = 1;
+	char name[20] = { 0 };
+
+	do
+	{
+		scanf("%s", name);
+
+		for (i = 0; i < n; i++)
+		{
+
+			if (!strcmp(name, stu[i].name))
+			{
+				printf("\n学生信息：%d %s %c %d %d %d\n\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+				f = 0;
+				break;
+			}
+		}
+		if (f) printf("未找到此学生信息，请重新输入:");
+
+	} while (f);
+
+
+
+}
+
+
 //删除学生信息
 void del()
 {
@@ -501,14 +696,55 @@ void SortMenu()
 	printf("              4--- 按照数学成绩排序              \n");
 	printf("              5--- 按照英语成绩排序              \n");
 	printf("-------------------------------------------------\n");
-	printf("请输入选项（1--2）：");
 }
 
 //排序(学号、姓名、成绩等)
 void sort()
 {
 	SortMenu();
+	int ind = 0;
+	char in;
+	do
+	{
+		do
+		{
+			printf("请输入选项（1--5）：");
+			scanf("%d", &ind);
+			if (ind == 1)
+			{
 
+			}
+
+			else if (ind == 2)
+			{
+
+
+			}
+			else if (ind == 3)
+			{
+
+
+			}
+			else if (ind == 4)
+			{
+
+
+			}
+			else if (ind == 5)
+			{
+
+
+			}
+		} while (ind > 5 || ind < 1);
+
+		getchar();
+
+		in = getchar();
+		if (in != '\n') break;
+
+	} while (in != '1' && in == '\n');
+
+	
 }
 
 //结束保存时间

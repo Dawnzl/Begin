@@ -57,6 +57,9 @@ void Enterf(struct student stu[], int n);//录入文件
 void addstd(struct student stu[], int num);//将注册的用户名和密码输入到文件中
 void addread(struct student stu[], int* num);//将文件中学生信息输出到程序中//添加版
 
+void revisestu(struct student stu[], int n);//修改学生信息函数
+void finestunum(struct student stu[], int n);//按学号查找学生信息
+void finestuname(struct student stu[], int n);//按姓名查找学生信息
 
 int verifyname(char name[], struct user ux[], char psw[]);//验证用户名
 
