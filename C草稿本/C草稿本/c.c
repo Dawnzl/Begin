@@ -120,3 +120,72 @@
 //    }
 //    return 0;
 //}
+
+//#include<stdio.h>
+//#include<string.h>
+//
+//int main()
+//{
+//	char name[3][20] = { {"yww"},{"yzl"},{"xiaohong"} };
+//
+//	//while (1)
+//	//{
+//		int i = 0;
+//		int j = 0;
+//		int k = 0;//k是字符的项标
+//		for (i = 0; i < 3-1 ; i++)
+//		{
+//			for (j = 0; j < 3 - i - 1; j++)
+//			{
+//				if (name[j][k] > name[j+1][k])
+//				{
+//					char t[20];
+//					strcpy(t, name[j]);
+//					strcpy(name[j], name[j + 1]);
+//					strcpy(name[j + 1], t);
+//
+//				}
+//				
+//			}
+//		}
+//		for (i = 0; i < 3; i++)
+//		{
+//			printf("%s\n", name[i]);
+//		}
+//	//}
+//	return 0;
+//}
+
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char str[8][9] = { "CHINA","JAPAN","KOREA","INDIA","CANADA","CNAADA","ENGLAND","FRANCE" };
+    char temp[9];
+    int i, l;
+    for (i = 0; i < 8; i++)
+    {
+        for (l = 0; l < 9; l++)
+        {
+            printf("%c", str[i][l]);
+        }
+        printf("\n");
+    }
+    //排序
+    printf("以上8个国家按字典中排序如下所示：\n");
+    int j, k;
+    for (j = 0; j < 8; j++)
+        for (k = j + 1; k < 8; k++)
+        {
+            if (strcmp(str[j], str[k]) > 0)
+            {//交换
+                strcpy(temp, str[j]);
+                strcpy(str[j], str[k]);
+                strcpy(str[k], temp);
+            }
+        }
+    for (i = 0; i < 8; i++)//输出
+        printf("%s\n", str[i]);
+    return 0;
+}

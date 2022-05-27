@@ -60,6 +60,8 @@ void addread(struct student stu[], int* num);//½«ÎÄ¼şÖĞÑ§ÉúĞÅÏ¢Êä³öµ½³ÌĞòÖĞ//Ìí¼
 void revisestu(struct student stu[], int n);//ĞŞ¸ÄÑ§ÉúĞÅÏ¢º¯Êı
 void finestunum(struct student stu[], int n);//°´Ñ§ºÅ²éÕÒÑ§ÉúĞÅÏ¢
 void finestuname(struct student stu[], int n);//°´ĞÕÃû²éÕÒÑ§ÉúĞÅÏ¢
+void dele(int sid, struct student stu[], int* N);//É¾³ıÑ§ÉúĞÅÏ¢
+void analcj(struct student stu[], int n, int cj[4], int x);//·ÖÎö³É¼¨ĞÅÏ¢
 
 int verifyname(char name[], struct user ux[], char psw[]);//ÑéÖ¤ÓÃ»§Ãû
 

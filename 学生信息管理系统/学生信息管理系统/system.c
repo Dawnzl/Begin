@@ -188,7 +188,7 @@ void make()
 				in = getchar();
 				if (in != '\n') break;                                                       //bug
 
-			} while (in != '1' && in == '\n');
+			} while (  in == '\n');
 		
 		}
 		else if (inp == 2)
@@ -249,17 +249,18 @@ void add()
 	printf("-------------------------------------------------\n");
 	printf("请输入选项（1--2）：");
 	int inp;
+	char in;
 
-	//do
-	{
-		scanf("%d", &inp);
-		printf("\n");
-		if (inp == 1)
+	do
+	{ 
+		do
 		{
-			char in;
-			struct  student stu[100]; //学生类型
-			do
+			scanf("%d", &inp);
+			printf("\n");
+			if (inp == 1)
 			{
+				struct  student stu[100]; //学生类型
+
 				printf("你选择了从键盘输入数据\n");
 				printf("请输入学生的人数：");
 				int num;
@@ -285,18 +286,12 @@ void add()
 
 
 				printf("创建成功！\n");
-				printf("按回车键继续输入，按任意键返回主界面\n");
 
-				getchar();
-				in = getchar();
-				if (in != '\n') break;                                                     
+			}
 
-			} while (in != '1' && in == '\n');
-
-		}
-		else if (inp == 2)
-		{
-			printf("你选择了从文件读取数据\n");
+			else if (inp == 2)
+			{
+				printf("你选择了从文件读取数据\n");
 
 
 
@@ -308,14 +303,20 @@ void add()
 
 
 
-		}
-		else printf("输入有误，请重新输入\n");
+			}
+			else printf("输入有误，请重新输入\n");
 
 
-	}// while (inp != 1 || inp != 2);
+		} while (inp != 1 || inp != 2);
 
+	printf("按回车键继续输入，按任意键返回主界面\n");
 
-}
+	getchar();
+	in = getchar();
+	if (in != '\n') break;
+
+	} while (in == '\n');
+} 
 
 void addstd(struct student stu[],int num)//将学生的信息输入到文件中
 {
@@ -440,7 +441,7 @@ void revise()
 		in = getchar();
 		if (in != '\n') break;                                                       
 
-	} while (in != '1' && in == '\n');
+	} while ( in == '\n');
 
 		
 
@@ -561,38 +562,28 @@ void fine()
 	FineMenu();
 	struct student stu[100];
 	int inp;
+	char in;
+
 	do
 	{
-		scanf("%d", &inp);
-		printf("\n");
-		if (inp == 1)
+		do
 		{
-			char in;
-			do
+			scanf("%d", &inp);
+			printf("\n");
+			if (inp == 1)
 			{
+
 				printf("\n你选择了按照学号查找，请继续\n");
 				printf("请输入学生的学号：");
 
-				//搜索（未完成）
 				int n = readfile(stu);//把学生信息输入到程序中
 
 				finestunum(stu, n);
 
-
-				printf("按回车键继续查找，按任意键返回主界面\n");
-				getchar();
-
-				in = getchar();
-				if (in != '\n') break;
-
-			} while (in != '1' && in == '\n');
-
-		}
-		else if (inp == 2)
-		{
-			char in;
-			do
+			}
+			else if (inp == 2)
 			{
+
 				char name[20];
 				printf("\n你选择了按照姓名查找，请继续\n");
 				printf("请输入学生的姓名：");
@@ -601,22 +592,20 @@ void fine()
 
 				finestuname(stu, n);
 
-
-				printf("按回车键继续查找，按任意键返回主界面\n");
-
-				getchar();
-				in = getchar();
-				if (in != '\n') break;
-
-			} while (in != '1' && in == '\n');
+			}
+			else printf("输入有误，请重新输入\n");
 
 
+		} while (inp < 1 || inp > 2);
 
-		}
-		else printf("输入有误，请重新输入\n");
+		printf("按回车键继续删除，按任意键返回主界面\n");
 
+		getchar();
+		in = getchar();
+		if (in != '\n') break;
 
-	} while (inp != 1 || inp != 2);
+	} while ( in == '\n');
+
 }
 
 void finestunum(struct student stu[],int n)
@@ -677,13 +666,177 @@ void finestuname(struct student stu[], int n)
 //删除学生信息
 void del()
 {
+	printf("**********学生信息的删除********** \n");
+	struct student stu[100];
+	int n = readfile(stu);
+	int sid = 0;//学号
+	int f = 1;//判断是否需要重新输入学号
+	char in;
+	do
+	{
+		do {
+			printf("输入需要删学生的学号：");
+			scanf("%d", &sid);
+			int i = 0;
+			for (i = 0; i < n; i++)
+			{
+				if (stu[i].sid == sid)
+				{
+					printf("该学生信息：\n");
+					printf("    学 号   姓 名   性别  语文  数学  英语\n");
+					printf("    %d    %s     %c    %d    %d    %d\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+					printf("该学生信息存在，是否选择删除\n1.确定\n2.取消\n");
+					f = 0;
+					break;
+				}
 
+			}
+			if (f)
+			{
+				printf("该学生信息不存在，请重新输入\n");
+			}
+
+
+		} while (f);//f未改变重新输入学号
+		int d;
+		printf("请选择：");
+		scanf("%d", &d);
+		if (d == 1)
+		{
+			dele(sid, stu, &n);
+			//textprint(us, n);//测试输出
+			Enterf(stu, n);
+			printf("删除成功\n");
+		}
+		else if (d == 2) printf("取消成功\n");
+
+		printf("按回车键继续删除，按任意键返回主界面\n");
+
+		getchar();
+		in = getchar();
+		if (in != '\n') break;
+
+	} while (in != '1' && in == '\n');
+}
+
+
+void dele(int sid, struct student stu[], int* N)
+{
+	int i;
+	int n = *N;
+	for (i = 0; i < n; i++)
+	{
+		if (sid==stu[i].sid) 
+		{
+			int t;
+			for (t = i; t < n; t++)
+			{
+				stu[t] = stu[t + 1];
+			}
+			//struct student t={ 0, "\0", '\0', 0,0,0  };
+			//stu[n - 1] = t;
+			strcpy(stu[n - 1].name, "\0");
+			stu[n - 1].sex = '\0';
+			stu[n - 1].score[0] = 0;
+			stu[n - 1].score[1] = 0;
+			stu[n - 1].score[2] = 0;
+
+			n = n - 1;
+			*N = n;
+			break;
+		}
+	}
 }
 //输入课程名称分析成绩
+//输入课程名称，显示该课程的最高分、最低分、平均分、不及格人数
 void analyse()
 {
+	printf("***********课程 分析*********** \n");
+	struct student stu[100];
+	int n = readfile(stu);
+	int score = 0;//课程代号
+	int cj[4];
+	char in;
+	do
+	{
+		do {
+			printf("输入需要分析的课程  语文（1）数学（2）英语（3）：");
+			scanf("%d", &score);
+			if (score == 1)
+			{
+				printf("语文成绩分析：\n");
+				analcj(stu, n, cj, 0);
+				printf("该班语文最高分：%d分，由%s同学考取\n", stu[cj[0]].score[0], stu[cj[0]].name);
+				printf("该班语文最低分：%d分\n", stu[cj[1]].score[0]);
+				printf("该班语文平均分：%d分\n", cj[2]);
+				printf("该班语文低于60分的不及格人数有%d人\n", cj[3]);
 
+			}
+			else if (score == 2)
+			{
+				printf("数学成绩分析：\n");
+				analcj(stu, n, cj, 1);
+				printf("该班数学最高分：%d分，由%s同学考取\n", stu[cj[0]].score[1], stu[cj[0]].name);
+				printf("该班数学最低分：%d分\n", stu[cj[1]].score[1]);
+				printf("该班数学平均分：%d分\n", cj[2]);
+				printf("该班数学低于60分的不及格人数有%d人\n", cj[3]);
+
+			}
+			else if (score == 3)
+			{
+				printf("英语成绩分析：\n");
+				analcj(stu, n, cj, 2);
+				printf("该班英语最高分：%d分，由%s同学考取\n", stu[cj[0]].score[2], stu[cj[0]].name);
+				printf("该班英语最低分：%d分\n", stu[cj[1]].score[2]);
+				printf("该班英语平均分：%d分\n", cj[2]);
+				printf("该班英语低于60分的不及格人数有%d人\n", cj[3]);
+			}
+			else printf("输入错误，请重新输入\n");
+
+		} while (score<1||score>3);
+
+		printf("按回车键继续分析，按任意键返回主界面\n");
+
+		getchar();
+		in = getchar();
+		if (in != '\n') break;
+
+	} while (in == '\n');
 }
+
+void analcj(struct student stu[], int n, int cj[4], int x)
+{
+
+	int i = 0;
+	int num = 0;
+	int sum = 0;
+	int max = 0;
+	int min = 100;
+	for (i = 0; i < n; i++)
+	{
+		if (max < stu[i].score[x])
+		{
+			max = stu[i].score[x];
+			cj[0] = i;
+		}
+
+		if (min > stu[i].score[x])
+		{
+			min = stu[i].score[x];
+			cj[1] = i;//min最小值的下标
+		}
+
+		if (stu[i].score[x] < 60)
+		{
+			num++;
+		}
+
+		sum += stu[i].score[x];
+	}
+	cj[2] = sum / n;
+	cj[3] = num;
+}
+
 
 void SortMenu()
 {
@@ -704,6 +857,9 @@ void sort()
 	SortMenu();
 	int ind = 0;
 	char in;
+	struct student stu[100];
+	int n = readfile(stu);//把学生信息输入到程序中
+
 	do
 	{
 		do
@@ -712,33 +868,143 @@ void sort()
 			scanf("%d", &ind);
 			if (ind == 1)
 			{
-
+				printf("\n");
+				printf("-------------------------------------------------\n");
+				printf("                  学生学号排序                   \n");
+				printf("-------------------------------------------------\n");
+				printf("    学 号   姓 名   性别  语文  数学  英语\n");
+				int i = 0;
+				int j = 0;
+				for (i = 0; i < n - 1; i++)
+				{
+					for (j = 0; j < n - i - 1; j++)
+					{
+						if (stu[j].sid > stu[j + 1].sid)
+						{
+							struct student t = stu[j];
+							stu[j] = stu[j + 1];
+							stu[j + 1] = t;
+						}
+					}
+				}
+				for (i = 0; i < n; i++)
+				{
+					printf("%5d%10s    %c%5d%5d%5d\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+				}
 			}
 
 			else if (ind == 2)
 			{
-
+				printf("\n");
+				printf("-------------------------------------------------\n");
+				printf("                  学生姓名排序                   \n");
+				printf("-------------------------------------------------\n");
+				printf("    姓 名   学 号   性别  语文  数学  英语\n");
+				int i = 0;
+				int j = 0;
+				for (i = 0; i < n - 1; i++)
+				{
+					for (j = 0; j < n - i - 1; j++)
+					{
+						if (strcmp(stu[j].name , stu[j + 1].name) > 0)
+						{
+							struct student t = stu[j];
+							stu[j] = stu[j + 1];
+							stu[j + 1] = t;
+						}
+					}
+				}
+				for (i = 0; i < n; i++)
+				{
+					printf("    %s    %d     %c    %d    %d    %d\n",  stu[i].name, stu[i].sid, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+				}
 
 			}
 			else if (ind == 3)
 			{
-
+				printf("\n");
+				printf("-------------------------------------------------\n");
+				printf("                  语文成绩排序                   \n");
+				printf("-------------------------------------------------\n");
+				printf("    语文  学 号   姓 名   性别  数学  英语\n");
+				int i = 0;
+				int j = 0;
+				for (i = 0; i < n - 1; i++)
+				{
+					for (j = 0; j < n - i - 1; j++)
+					{
+						if (stu[j].score[0] > stu[j + 1].score[0])
+						{
+							struct student t = stu[j];
+							stu[j] = stu[j + 1];
+							stu[j + 1] = t;
+						}
+					}
+				}
+				for (i = 0; i < n; i++)
+				{
+					printf("    %d    %d    %s     %c    %d    %d\n", stu[i].score[0], stu[i].sid, stu[i].name, stu[i].sex,  stu[i].score[1], stu[i].score[2]);
+				}
 
 			}
 			else if (ind == 4)
 			{
-
+				printf("\n");
+				printf("-------------------------------------------------\n");
+				printf("                  数学成绩排序                   \n");
+				printf("-------------------------------------------------\n");
+				printf("    数学  学 号   姓 名   性别  语文  英语\n");
+				int i = 0;
+				int j = 0;
+				for (i = 0; i < n - 1; i++)
+				{
+					for (j = 0; j < n - i - 1; j++)
+					{
+						if (stu[j].score[1] > stu[j + 1].score[1])
+						{
+							struct student t = stu[j];
+							stu[j] = stu[j + 1];
+							stu[j + 1] = t;
+						}
+					}
+				}
+				for (i = 0; i < n; i++)
+				{
+					printf("    %d    %d    %s     %c    %d    %d\n", stu[i].score[1], stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[2]);
+				}
 
 			}
 			else if (ind == 5)
 			{
-
+			printf("\n");
+			printf("-------------------------------------------------\n");
+			printf("                  英语成绩排序                   \n");
+			printf("-------------------------------------------------\n");
+			printf("    英语  学 号   姓 名   性别  语文  数学\n");
+			int i = 0;
+			int j = 0;
+			for (i = 0; i < n - 1; i++)
+			{
+				for (j = 0; j < n - i - 1; j++)
+				{
+					if (stu[j].score[2] > stu[j + 1].score[2])
+					{
+						struct student t = stu[j];
+						stu[j] = stu[j + 1];
+						stu[j + 1] = t;
+					}
+				}
+			}
+			for (i = 0; i < n; i++)
+			{
+				printf("    %d    %d    %s     %c    %d    %d\n", stu[i].score[2], stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1]);
+			}
 
 			}
 		} while (ind > 5 || ind < 1);
 
 		getchar();
-
+		printf("按回车键继续查找，按任意键返回主界面\n");
 		in = getchar();
 		if (in != '\n') break;
 
