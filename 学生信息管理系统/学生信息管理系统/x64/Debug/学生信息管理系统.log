@@ -1,6 +1,7 @@
 ﻿  system.c
-D:\计算机学习\gitee\applet\学生信息管理系统\学生信息管理系统\system.c(374,18): warning C4013: “readfile”未定义；假设外部返回 int
-D:\计算机学习\gitee\applet\学生信息管理系统\学生信息管理系统\system.c(586,10): warning C4101: “name”: 未引用的局部变量
-D:\计算机学习\gitee\applet\学生信息管理系统\学生信息管理系统\system.c(1019,6): warning C4101: “n”: 未引用的局部变量
-D:\计算机学习\gitee\applet\学生信息管理系统\学生信息管理系统\system.c(1045,18): warning C4013: “_getch”未定义；假设外部返回 int
+D:\计算机学习\gitee\applet\学生信息管理系统\学生信息管理系统\system.c(283,17): warning C4013: “sidfine”未定义；假设外部返回 int
+D:\计算机学习\gitee\applet\学生信息管理系统\学生信息管理系统\system.c(336,18): warning C4013: “readfile”未定义；假设外部返回 int
+D:\计算机学习\gitee\applet\学生信息管理系统\学生信息管理系统\system.c(615,10): warning C4101: “name”: 未引用的局部变量
+D:\计算机学习\gitee\applet\学生信息管理系统\学生信息管理系统\system.c(1055,6): warning C4101: “n”: 未引用的局部变量
+D:\计算机学习\gitee\applet\学生信息管理系统\学生信息管理系统\system.c(1081,18): warning C4013: “_getch”未定义；假设外部返回 int
   学生信息管理系统.vcxproj -> D:\计算机学习\gitee\applet\学生信息管理系统\x64\Debug\学生信息管理系统.exe

@@ -150,54 +150,51 @@ void MakeMenu()
 void make()
 {
 	MakeMenu();
+	char in;
 	int inp;
-
 	do
 	{
-		scanf("%d", &inp);
-		printf("\n");
-		if (inp == 1)
+		do
 		{
-			char in;
-			struct  student stu[100]; //学生类型
-			do
+			scanf("%d", &inp);
+			printf("\n");
+			if (inp == 1)
 			{
-				printf("你选择了从键盘输入数据\n");
-				printf("请输入学生的人数：");
-				int num;
-				scanf("%d", &num);
-
-				printf("请按照 学号 姓名 性别 语文 数学 英语   的顺序输入每个学生的信息\n");
-				int i = 0;
-				for (i = 0; i < num; i++)
+				struct student stu[100]; //学生类型
+				do
 				{
-					printf("请输入：");
-					scanf("%d %s %c %d %d %d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);
-				}
+					printf("你选择了从键盘输入数据\n");
+					printf("请输入学生的人数：");
+					int num;
+					scanf("%d", &num);
+
+					printf("请按照 学号 姓名 性别 语文 数学 英语   的顺序输入每个学生的信息\n");
+					int i = 0;
+					for (i = 0; i < num; i++)
+					{
+						printf("请输入：");
+						scanf("%d %s %c %d %d %d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);
+					}
 
 
 
-				Enterf(stu, num);
+					Enterf(stu, num);
 
 
 
-				printf("创建成功！\n");
-				printf("按回车键继续输入，按任意键返回主界面\n");
+					printf("创建成功！\n");
+					printf("按回车键继续输入，按任意键返回主界面\n");
 
-				getchar();
-				in = getchar();
-				if (in != '\n') break;                                                       //bug
+					getchar();
+					in = getchar();
+					if (in != '\n') break;                                                       //bug
 
-			} while (  in == '\n');
-		
-		}
-		else if (inp == 2)
-		{
-			printf("你选择了从文件读取数据\n");
+				} while (in == '\n');
 
-
-
-
+			}
+			else if (inp == 2)
+			{
+				printf("你选择了从文件读取数据\n");
 
 
 
@@ -205,13 +202,21 @@ void make()
 
 
 
-		}
-		else printf("输入有误，请重新输入\n");
 
 
-	} while (inp != 1 || inp != 2);
 
 
+			}
+			else printf("输入有误，请重新输入\n");
+
+
+		} while (inp != 1 || inp != 2);
+
+		getchar();
+		in = getchar();
+		if (in != '\n') break;
+
+	} while (in == '\n');
 }
 
 //录入文件
@@ -259,26 +264,37 @@ void add()
 			printf("\n");
 			if (inp == 1)
 			{
-				struct  student stu[100]; //学生类型
+				struct student stu[100]; //学生类型
 
 				printf("你选择了从键盘输入数据\n");
 				printf("请输入学生的人数：");
 				int num;
 				scanf("%d", &num);
+				
+
 
 				printf("请按照  学号   姓名   性别  语文  数学  英语的顺序输入每个学生的信息\n");
 				int i = 0;
 				int n = 0;
 				for (i = 0; i < num; i++)
 				{
-					printf("请输入：");
+					printf("请输入信息：");
 					scanf("%d %s %c %d %d %d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);
+					if (sidfine(stu[i].sid))//检查学号是否可用
+					{
+						printf("请继续操作\n");
+					}
+					else
+					{
+						i--;
+						printf("请重新输入\n");
+					}
 				}
 
 				addstd(stu, num);//添加进文件   stu里先存放了
 				//textprint(stu, num);
 
-				addread(stu, &num);//学生总数                                      记得测试
+				addread(stu, &num);//学生总数                              
 
 
 				Enterf(stu, num);//
@@ -294,7 +310,11 @@ void add()
 				printf("你选择了从文件读取数据\n");
 
 
-
+				struct student stu[100]; //学生类型
+//要先把原文件中学生信息输入到程序中
+//再把另一文件的学生输入到程序中
+//最后把程序中的传入源文件中
+				int n = instudent(stu);
 
 
 
@@ -317,6 +337,39 @@ void add()
 
 	} while (in == '\n');
 } 
+
+int instudent(struct student stu[])
+{
+	FILE* f1;
+	int i, n;
+	f1 = fopen("Astudent.txt", "r");
+	fscanf(f1, "%d", &n);
+	for (i = 0; i < n; i++) {
+		fscanf(f1, "%d %s %c %d %d %d\n", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);//将文件中用户名和密码输出到程序中
+	}
+	fclose(f1);
+	return n;
+}
+int outstudent(struct student stu[])
+{
+
+}
+
+int sidfine(int num)
+{
+	struct student stu[100]; 
+	int n = readfile(stu);
+	int i = 0;
+	for (i = 0; i < n; i++)
+	{
+		if (num == stu[i].sid)
+		{
+			printf("%d该学号已有学生占用，请检查后重新操作\n", num);
+			return 0;
+		}
+	}
+	return 1;
+}
 
 void addstd(struct student stu[],int num)//将学生的信息输入到文件中
 {
@@ -724,16 +777,19 @@ void dele(int sid, struct student stu[], int* N)
 {
 	int i;
 	int n = *N;
+	struct student T;
+	//={ 0, "\0", '\0', 0,0,0  }
 	for (i = 0; i < n; i++)
 	{
 		if (sid==stu[i].sid) 
 		{
+			T = stu[i];
 			int t;
 			for (t = i; t < n; t++)
 			{
 				stu[t] = stu[t + 1];
+				
 			}
-			//struct student t={ 0, "\0", '\0', 0,0,0  };
 			//stu[n - 1] = t;
 			strcpy(stu[n - 1].name, "\0");
 			stu[n - 1].sex = '\0';
@@ -746,6 +802,10 @@ void dele(int sid, struct student stu[], int* N)
 			break;
 		}
 	}
+	FILE* f;
+	f = fopen("delstudent.txt", "a");//添加
+	fprintf(f, "%d %s %c %d %d %d\n", T.sid, T.name, T.sex, T.score[0], T.score[1], T.score[2]);
+	fclose(f);
 }
 //输入课程名称分析成绩
 //输入课程名称，显示该课程的最高分、最低分、平均分、不及格人数
