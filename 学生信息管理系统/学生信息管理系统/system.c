@@ -26,6 +26,10 @@ void Loginp(struct user us[],char name[])
 		printf("密码：");
 		inpsw(psw);//密码防窥
 		printf("\n");
+
+		//进行加密
+		Convert(psw);
+		//printf("%s", psw);
 		if (strcmp(psw, verpsw) == 0) {
 			break;
 		}
@@ -48,6 +52,8 @@ int verifyname(char name[], struct user ux[], char psw[])
 	{
 		fscanf(f1, "%s%s", ux[i].name, ux[i].password);//将文件中用户名及密码输出到程序中
 		if (strcmp(name, ux[i].name) == 0) {
+			//加解密
+
 			strcpy(psw, ux[i].password);
 			f = 0;
 			break;
@@ -161,8 +167,7 @@ void make()
 			if (inp == 1)
 			{
 				struct student stu[100]; //学生类型
-				do
-				{
+
 					printf("你选择了从键盘输入数据\n");
 					printf("请输入学生的人数：");
 					int num;
@@ -176,33 +181,38 @@ void make()
 						scanf("%d %s %c %d %d %d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);
 					}
 
-
-
 					Enterf(stu, num);
 
-
-
 					printf("创建成功！\n");
-					printf("按回车键继续输入，按任意键返回主界面\n");
-
-					getchar();
-					in = getchar();
-					if (in != '\n') break;                                                       //bug
-
-				} while (in == '\n');
+					
 
 			}
 			else if (inp == 2)
 			{
+				struct student stu[100]; //学生类型
 				printf("你选择了从文件读取数据\n");
+				printf("现将打开“Fstudent”文件并进行覆盖添加\n");
+				printf("是否确定传入该文件学生信息，\n1.确定\n2.取消\n");
+				int o = 0;
+				printf("请选择：");
+				do
+				{
+					scanf("%d", &o);
+
+					if (o == 1)
+					{
+
+						int n = inFstudent(stu);//stu先存放另外文件学生的信息
+						Enterf(stu, n);
+
+						printf("创建成功！\n");
+					}
+					else if (o == 2) printf("取消成功\n");
+
+					else printf("输入错误，请重新输入\n");
 
 
-
-
-
-
-
-
+				} while (o < 1 || o>2);
 
 
 
@@ -210,13 +220,28 @@ void make()
 			else printf("输入有误，请重新输入\n");
 
 
-		} while (inp != 1 || inp != 2);
+		} while (inp != 1 && inp != 2);
 
+		printf("按回车键继续输入，按任意键返回主界面\n");
 		getchar();
 		in = getchar();
 		if (in != '\n') break;
 
 	} while (in == '\n');
+}
+
+//打开F学生文件
+int inFstudent(struct student stu[])
+{
+	FILE* f1;
+	int i, n;
+	f1 = fopen("Fstudent.txt", "r");
+	fscanf(f1, "%d", &n);
+	for (i = 0; i < n; i++) {
+		fscanf(f1, "%d %s %c %d %d %d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);//将文件输出到程序中
+	}
+	fclose(f1);
+	return n;
 }
 
 //录入文件
@@ -307,17 +332,68 @@ void add()
 
 			else if (inp == 2)
 			{
-				printf("你选择了从文件读取数据\n");
-
-
 				struct student stu[100]; //学生类型
-//要先把原文件中学生信息输入到程序中
-//再把另一文件的学生输入到程序中
-//最后把程序中的传入源文件中
-				int n = instudent(stu);
+				printf("你选择了从文件读取数据\n");
+				printf("现将打开“Astudent”文件并进行传输添加\n");
+				printf("是否确定传入该文件学生信息，\n1.确定\n2.取消\n");
+				int o;
+				printf("请选择：");
+				do
+				{
+					scanf("%d", &o);
+
+					if (o == 1)
+					{
+						//要先把原文件中学生信息输入到程序中
+						//再把另一文件的学生输入到程序中
+						//最后把程序中的传入源文件中
+						int n = instudent(stu);//stu先存放另外文件学生的信息
+						addstd(stu, n);//将学生的信息输入到文件中
+						addread(stu, &n);//将文件中所有的学生信息输出到程序中（覆盖stu数组）
+
+						int i = 0, j = 0;
+
+						for (j = 0; j < n; j++)
+						{
+							for (i = 0; i < n; i++)
+							{
+								if (stu[i].sid == stu[j].sid && i != j)
+								{
+									printf("    学 号   姓 名   性别  语文  数学  英语\n");
+									printf("1：  %d    %s     %c    %d    %d    %d\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+									printf("2：  %d    %s     %c    %d    %d    %d\n", stu[j].sid, stu[j].name, stu[j].sex, stu[j].score[0], stu[j].score[1], stu[j].score[2]);
+									printf("该学生学号重复，选择删1信息或2信息：\n删除1信息\n删除2信息\n");
+									//f = 1;
+									int d;
+									printf("请选择：");
+									scanf("%d", &d);
+									if (d == 1)
+									{
+										dele(stu[i].sid, stu, &n);
+										//textprint(us, n);//测试输出
+										//Enterf(stu, n);
+										printf("删除成功\n");
+									}
+									else if (d == 2)
+									{
+										dele(stu[j].sid, stu, &n);
+										//textprint(us, n);//测试输出
+										//Enterf(stu, n);
+										printf("删除成功\n");
+									}
+								}
+
+							}
+						}
+
+						Enterf(stu, n);//经过删除处理后再将stu录入文件中
+					}
+					else if (o == 2) printf("取消成功\n");
+
+					else printf("输入错误，请重新输入");
 
 
-
+				} while (o < 1 || o>2);
 
 
 
@@ -327,7 +403,7 @@ void add()
 			else printf("输入有误，请重新输入\n");
 
 
-		} while (inp != 1 || inp != 2);
+		} while (inp != 1 && inp != 2);
 
 	printf("按回车键继续输入，按任意键返回主界面\n");
 
@@ -338,22 +414,29 @@ void add()
 	} while (in == '\n');
 } 
 
-int instudent(struct student stu[])
+int instudent(struct student stu[])//数据转移
 {
 	FILE* f1;
 	int i, n;
 	f1 = fopen("Astudent.txt", "r");
 	fscanf(f1, "%d", &n);
 	for (i = 0; i < n; i++) {
-		fscanf(f1, "%d %s %c %d %d %d\n", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);//将文件中用户名和密码输出到程序中
+		fscanf(f1, "%d %s %c %d %d %d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);//将文件输出到程序中
 	}
 	fclose(f1);
 	return n;
 }
-int outstudent(struct student stu[])
-{
-
-}
+//int outstudent(struct student stu[], int n)
+//{
+//	FILE* f1;
+//	int i = 0, n = 0;
+//	f1 = fopen("student.txt", "a");
+//	for (i = 0; i < n; i++)
+//	{
+//		fprintf(f1, "%d %s %c %d %d %d\n", stu[i].sid, stu[i].name, stu[i].sex, stu[i].score[0], stu[i].score[1], stu[i].score[2]);
+//	}
+//	fclose(f1);
+//}
 
 int sidfine(int num)
 {
@@ -393,7 +476,7 @@ void addread(struct student stu[], int* num)//学生数据末尾下标
 	*num = n + *num;                  //程序中学生的个数   +   文件中学生的个数
 	for (i = 0; i < *num; i++)
 	{
-		fscanf(f1, "%d %s %c %d %d %d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);//将文件中用户名和密码输出到程序中
+		fscanf(f1, "%d %s %c %d %d %d", &stu[i].sid, stu[i].name, &stu[i].sex, &stu[i].score[0], &stu[i].score[1], &stu[i].score[2]);//将文件中学生信息输出到程序中
 	}
 	fclose(f1);
 }
@@ -1150,8 +1233,8 @@ void Convert(char s[])
 		}
 		else if (s[i] == 'z') s[i] = 'a';
 		else if (s[i] == 'Z') s[i] = 'A';
-		else if (s[i] >= 0 && s[i] < 9) s[i]++;
-		else if (s[i] == 9) s[i] = 0;
+		else if (s[i] >= '0' && s[i] < '9') s[i]++;
+		else if (s[i] == '9') s[i] = '0';
 	}
 }
 //解密
