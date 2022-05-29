@@ -212,7 +212,7 @@ void make()
 					else printf("ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë\n");
 
 
-				} while (o < 1 || o>2);
+				} while (o < 1 || o > 2);
 
 
 
@@ -954,7 +954,7 @@ void analcj(struct student stu[], int n, int cj[4], int x)
 	int num = 0;
 	int sum = 0;
 	int max = 0;
-	int min = 100;
+	int min = 101;
 	for (i = 0; i < n; i++)
 	{
 		if (max < stu[i].score[x])
@@ -1168,17 +1168,6 @@ void Out(char name[])
 	fclose(date);
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 //ÃÜÂëÆª
 void inpsw(char psw[])//ÃÜÂëÊäÈë·À¿ú
