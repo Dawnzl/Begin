@@ -222,7 +222,7 @@ void make()
 
 		} while (inp != 1 && inp != 2);
 
-		printf("按回车键继续输入，按任意键返回主界面\n");
+		printf("按回车键继续输入，按 任意键+回车 返回主界面\n");
 		getchar();
 		in = getchar();
 		if (in != '\n') break;
@@ -405,7 +405,7 @@ void add()
 
 		} while (inp != 1 && inp != 2);
 
-	printf("按回车键继续输入，按任意键返回主界面\n");
+	printf("按回车键继续输入，按 任意键+回车 返回主界面\n");
 
 	getchar();
 	in = getchar();
@@ -571,7 +571,7 @@ void revise()
 
 		Enterf(stu, n);//录入修改信息
 
-		printf("按回车键继续输入，按任意键返回主界面\n");
+		printf("按回车键继续输入，按 任意键+回车 返回主界面\n");
 
 		getchar();
 		in = getchar();
@@ -667,7 +667,7 @@ void revisestu(struct student stu[], int n)
 			getchar();
 
 		} while (f);
-		printf("按回车键继续修改，按任意键返回主界面\n");
+		printf("按回车键继续修改，按 任意键+回车 返回主界面\n");
 		in = getchar();
 		if (in != '\n') break;
 
@@ -734,7 +734,7 @@ void fine()
 
 		} while (inp < 1 || inp > 2);
 
-		printf("按回车键继续删除，按任意键返回主界面\n");
+		printf("按回车键继续删除，按 任意键+回车 返回主界面\n");
 
 		getchar();
 		in = getchar();
@@ -846,7 +846,7 @@ void del()
 		}
 		else if (d == 2) printf("取消成功\n");
 
-		printf("按回车键继续删除，按任意键返回主界面\n");
+		printf("按回车键继续删除，按 任意键+回车 返回主界面\n");
 
 		getchar();
 		in = getchar();
@@ -938,7 +938,7 @@ void analyse()
 
 		} while (score<1||score>3);
 
-		printf("按回车键继续分析，按任意键返回主界面\n");
+		printf("按回车键继续分析，按 任意键+回车 返回主界面\n");
 
 		getchar();
 		in = getchar();
@@ -1147,7 +1147,7 @@ void sort()
 		} while (ind > 5 || ind < 1);
 
 		getchar();
-		printf("按回车键继续查找，按任意键返回主界面\n");
+		printf("按回车键继续查找，按 任意键+回车 返回主界面\n");
 		in = getchar();
 		if (in != '\n') break;
 
