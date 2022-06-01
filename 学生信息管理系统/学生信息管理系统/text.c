@@ -39,6 +39,9 @@ int main()
 		case 8:
 			sort();//排序(学号、姓名、成绩等)
 			break;
+		case 9:
+			deleteMenu();
+			break;
 		case 0:
 			Out(name);
 			printf("欢迎再次使用本系统!\n");
