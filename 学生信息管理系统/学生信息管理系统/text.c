@@ -40,7 +40,7 @@ int main()
 			sort();//排序(学号、姓名、成绩等)
 			break;
 		case 9:
-			deleteMenu();
+			deleteMenu();//输入9进行链表删除
 			break;
 		case 0:
 			Out(name);

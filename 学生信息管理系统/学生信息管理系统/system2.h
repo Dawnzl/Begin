@@ -65,7 +65,7 @@ void analcj(struct student stu[], int n, int cj[4], int x);//分析成绩信息
 
 int verifyname(char name[], struct user ux[], char psw[]);//验证用户名
 
-
+void deleteMenu();//链表删除
 
 
 
