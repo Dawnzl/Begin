@@ -1225,16 +1225,6 @@ void JConvert(char s[])
 }
 
 
-/*链表删除函数*/
-
-
-//char myGetc() //获取一个不为换行的字符
-//{
-//	char c;
-//	while ((c = getchar()) == '\n')
-//		printf("%d", (int)c);
-//	return c;
-//}
 
 void printStdent(struct student s)
 {
