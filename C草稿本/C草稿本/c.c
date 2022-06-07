@@ -190,29 +190,37 @@
 //    return 0;
 //}
 
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//    char sigh[20];
+//    scanf("%s", sigh);
+//    //printf("%d\n",strlen(sigh)); 
+//    if (strlen(sigh) == 11 && sigh[0] == '1')
+//    {
+//        int i = 0;
+//        int f = 1;
+//        for (i = 0; i < 11; i++)
+//        {
+//            if (sigh[i] < '0' || sigh[i]>'9')
+//            {
+//                printf("no\n");
+//                f = 0;
+//                break;
+//            }
+//        }
+//        if (f) printf("yes\n");
+//    }
+//    else printf("no\n");
+//    return 0;
+//}
+
 #include<stdio.h>
 #include<string.h>
 
 int main()
 {
-    char sigh[20];
-    scanf("%s", sigh);
-    //printf("%d\n",strlen(sigh));
-    if (strlen(sigh) == 11 && sigh[0] == '1')
-    {
-        int i = 0;
-        int f = 1;
-        for (i = 0; i < 11; i++)
-        {
-            if (sigh[i] < '0' || sigh[i]>'9')
-            {
-                printf("no\n");
-                f = 0;
-                break;
-            }
-        }
-        if (f) printf("yes\n");
-    }
-    else printf("no\n");
-    return 0;
+
+	return 0;
 }
