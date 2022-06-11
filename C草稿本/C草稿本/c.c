@@ -216,11 +216,202 @@
 //    return 0;
 //}
 
-#include<stdio.h>
-#include<string.h>
+//#include<stdio.h>
+//#include<string.h>
+//#define M 3
+//#define N 4
+//int main()
+//{
+//	int max, a[M][N], b[M], i, j;
+//	for (i = 0; i < M; i++)
+//		for (j = 0; j < N; j++)
+//			scanf("%d", &a[i][j]);
+//
+//	for (i = 0; i < M; i++)
+//	{
+//		max = 0;
+//		for (j = 0; j < N; j++)
+//		{
+//			if (max < a[i][j])
+//			{
+//				max = a[i][j];
+//			}
+//		}
+//		b[i] = max;
+//	}
+//
+//
+//	for (i = 0; i < M; i++)
+//		printf("%4d ", b[i]);
+//
+//	return 0;
+//}
 
-int main()
-{
-	//
-	return 0;
-}
+//#include<stdio.h>
+//#include<string.h>
+//void fun(int* a, int* b)
+//{
+//	int* c;
+//	c = a; a = b; b = c;
+//}
+//int main()
+//{
+//	int x = 3, y = 5, * p = &x, * q = &y;
+//	fun(p, q); printf("%d,%d,", *p, *q);
+//	fun(&x, &y); printf("%d,%d\n", *p, *q);
+//	return 0;
+//}
+
+//#include <stdio.h>
+//void f(int* p, int* q);
+//main()
+//{
+//	int m = 1, n = 2, * r = &m;
+//	f(r, &n);
+//	printf("%d,%d", m, n);
+//}
+//void f(int* p, int* q)
+//{
+//	p = p + 1; *q = *q + 1;
+//}
+
+//#include <stdio.h>
+//struct ord
+//{
+//	int x, y;
+//} dt[2] = { 1,2,3,4 };
+//int main()
+//{
+//	struct ord* p = dt;
+//	printf("%d,", ++p->x); printf("%d\n", ++p->y);
+//}
+ 
+/*字符逆序*/
+//#include<stdio.h>
+//int main()
+//{
+//	int i, j,temp;
+//	char str[80];
+//	i = 0;
+//	while ((str[i] = getchar()) != '\n')
+//		i++;
+//	str[i] = 0;
+//	
+//	for (j = 0; j < i / 2; j++)
+//	{
+//		(char)temp = str[j];
+//		str[j] = str[i - j - 1];
+//		str[i - j - 1] = temp;
+//	}
+//
+//
+//	for (i = 0; str[i] != 0; i++)
+//		putchar(str[i]);
+//}
+
+/*判断回文*/
+//#include<stdio.h>
+//int mirror(char* p);
+//void main()
+//{
+//	char s[80];
+//	int repeat, ri;
+//	scanf_s("%d", &repeat);
+//	getchar();
+//	for (ri = 1; ri <= repeat; ri++)
+//	{
+//		gets(s);
+//		if (mirror(s) != 0)
+//			printf("YES\n");
+//		else
+//			printf("NO\n");
+//	}
+//}
+//int mirror(char* p) {
+//	int i, n = 0;
+//	for (i = 0; p[i] != '\0'; i++)
+//	{
+//		n++;
+//	}
+//	for (i = 0; i < n / 2; i++)
+//	{
+//		if (p[i] != p[n - i - 1])
+//		{
+//			return 0;
+//		}
+//	}
+//	return 1;
+//}
+
+
+//#include<stdio.h>
+//#include<string.h>
+//
+//void main()
+//{
+//	char str[100], s[100], c;
+//	int i = 0, j = 0;
+//	printf("zfc:");
+//	gets(str);
+//	printf("sc:");
+//	scanf("%c", &c);
+//
+//	//while(i < strlen(str))
+//	//{
+//	//	if (str[i] != c)
+//	//	{
+//	//		s[j++] = str[i++];
+//	//	}
+//	//	else
+//	//	{
+//	//		i++;
+//	//	}
+//	//}
+//
+//	for (i = 0; i < strlen(str); i++)
+//	{
+//		if (str[i] != c)
+//		{
+//			s[j++] = str[i];
+//		}
+//	}
+//	s[j] = '\0';
+//
+//	printf("%s\n", s);
+//
+//}
+
+/*判断最小值位置*/
+//#include<stdio.h>
+//int station(int s[], int n)
+//{
+//	int min_x = 0;
+//	int i = 0;
+//	for (i = 0; i < n; i++)
+//	{
+//		if (s[i] < s[min_x])
+//		{
+//			min_x = i;
+//		}
+//	}
+//	return min_x + 1;
+//}
+//int main()
+//{
+//	int a[100], n, i, t;
+//	scanf("%d", &n);
+//	for (i = 0; i < n; i++) {
+//		scanf("%d", &a[i]);
+//	}
+//	t = station(a, n);
+//	printf("%d\n", t);
+//}
+
+
+//#include<stdio.h>
+//
+//int main()
+//{
+//
+//	return 0;
+//}
