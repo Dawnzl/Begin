@@ -415,3 +415,69 @@
 //
 //	return 0;
 //}
+
+/*选择排序法*/
+//#include<stdlib.h>
+//#include<stdio.h>
+//int main()
+//{
+//	int i, j, t, k;
+//	int a[10];
+//	for (i = 0; i < 10; i++)
+//		a[i] = rand() % (61) + 30;
+//		for (i = 0; i < 9; i++)
+//		{
+//			k = i;
+//			for (j = i + 1; j < 10; j++)
+//				if (a[k] > a[j])k = j;
+//				if (k != i) { t = a[k]; a[k] = a[i]; a[i] = t; }
+//		}
+//		for (i = 0; i < 10; i++)
+//			printf("%5d", a[i]);
+//		printf("\n");
+//	return 0;
+//}
+
+/* y = 1/2+1/4+···+1/i */
+//#include<stdio.h>
+//double fun(int n)
+//{
+//	double y = 0;
+//	int i = 0;
+//	for (i = 2; i <= n; i+=2)
+//	{
+//		y += 1.0 / (i * 1.0);
+//	}
+//	return y;
+//
+//}
+//
+//void main()
+//{
+//	int n;
+//	scanf("%d", &n);
+//	printf("%lf\n", fun(n));
+//
+//}
+
+#include <stdio.h> 
+#include <string.h> 
+typedef struct { char name[9]; char sex; float score[2]; } STU;
+void f(STU a)
+{
+	STU b = { "Zhao" ,'m',85.0,90.0 }; int i;
+	strcpy(a.name, b.name);
+	a.sex = b.sex;
+	for (i = 0; i < 2; i++) a.score[i] = b.score[i];
+}
+main()
+{
+	STU c = { "Qian",'f',95.0,92.0 };
+	f(c);
+	printf("%s,%c,%2.0f,%2.0f\n", c.name, c.sex, c.score[0], c.score[1]);
+}
+//程序的运行结果是（  ）
+//A)Qian, f, 95, 92
+//B)Qian, m, 85, 90
+//C)Zhao, f, 95, 92
+//D)Zhao, m, 85, 90
