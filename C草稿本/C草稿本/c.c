@@ -460,24 +460,121 @@
 //
 //}
 
-#include <stdio.h> 
-#include <string.h> 
-typedef struct { char name[9]; char sex; float score[2]; } STU;
-void f(STU a)
-{
-	STU b = { "Zhao" ,'m',85.0,90.0 }; int i;
-	strcpy(a.name, b.name);
-	a.sex = b.sex;
-	for (i = 0; i < 2; i++) a.score[i] = b.score[i];
-}
-main()
-{
-	STU c = { "Qian",'f',95.0,92.0 };
-	f(c);
-	printf("%s,%c,%2.0f,%2.0f\n", c.name, c.sex, c.score[0], c.score[1]);
-}
+//#include <stdio.h> 
+//#include <string.h> 
+//typedef struct { char name[9]; char sex; float score[2]; } STU;
+//void f(STU a)
+//{
+//	STU b = { "Zhao" ,'m',85.0,90.0 }; int i;
+//	strcpy(a.name, b.name);
+//	a.sex = b.sex;
+//	for (i = 0; i < 2; i++) a.score[i] = b.score[i];
+//}
+//main()
+//{
+//	STU c = { "Qian",'f',95.0,92.0 };
+//	f(c);
+//	printf("%s,%c,%2.0f,%2.0f\n", c.name, c.sex, c.score[0], c.score[1]);
+//}
 //程序的运行结果是（  ）
 //A)Qian, f, 95, 92
 //B)Qian, m, 85, 90
 //C)Zhao, f, 95, 92
 //D)Zhao, m, 85, 90
+
+
+//#include <stdio.h> 
+//
+//int main()
+//{
+//	int bit = 0;
+//	int n = 0;
+//	int num = 0;
+//	int i, jsum = 1, sum = 0;
+//	for (i = 100; i < 1000; i++)
+//	{
+//		num = i;
+//		jsum = 1;
+//		sum = 0;
+//		while (num > 0)
+//		{
+//			bit = num % 10;
+//			num /= 10;
+//			jsum *= bit;
+//			sum += bit;
+//		}
+//		if (jsum == sum) 
+//		{
+//			printf("%d ", i);
+//			n++;
+//		}
+//	}
+//	printf("\n%d", n);
+//	return 0;
+//}
+
+//#include <stdio.h> 
+//
+//int main()
+//{
+//	int bit = 0;
+//	int n = 0;
+//	int num = 0;
+//	int i, jsum = 1, sum = 0;
+//	for (i = 1; i < 10000; i++)
+//	{
+//		num = i;
+//		jsum = 1;
+//		sum = 0;
+//		while (num > 0)
+//		{
+//			bit = num % 10;
+//			num /= 10;
+//			jsum *= bit;
+//			sum += bit;
+//		}
+//		if (3*jsum == sum)
+//		{
+//			printf("%d ", i);
+//			n++;
+//		}
+//	}
+//	printf("\n%d", n);
+//	return 0;
+//}
+
+//#include <stdio.h> 
+//#include<math.h>
+//int main()
+//{
+//	int a[10] = { 0,0,1 };
+//	int i = 0;
+//	double sum = 1.0;
+//
+//	for (i = 3; i < 10; i++)
+//	{
+//		a[i] = a[i - 1] + a[i - 2] + a[i - 3];
+//		sum += sqrt(a[i]);
+//	}
+//	printf("平方根之和：%lf", sum);
+//	return 0;
+//}
+
+
+#include<stdio.h>
+
+int main()
+{
+	long int num = 0;
+	long int i = 0;
+	for (i = 100000; i < 300000; i++)
+	{
+		if (i % 57 == 0 && i % 63 == 0)
+		{
+			printf("%d ", i);
+			num = i;
+		}
+	}
+	printf("\n符合的最大的整数%d", num);
+	return 0;
+}
