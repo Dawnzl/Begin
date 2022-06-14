@@ -561,20 +561,20 @@
 //}
 
 
-#include<stdio.h>
-
-int main()
-{
-	long int num = 0;
-	long int i = 0;
-	for (i = 100000; i < 300000; i++)
-	{
-		if (i % 57 == 0 && i % 63 == 0)
-		{
-			printf("%d ", i);
-			num = i;
-		}
-	}
-	printf("\n符合的最大的整数%d", num);
-	return 0;
-}
+//#include<stdio.h>
+//
+//int main()
+//{
+//	long int num = 0;
+//	long int i = 0;
+//	for (i = 100000; i < 300000; i++)
+//	{
+//		if (i % 57 == 0 && i % 63 == 0)
+//		{
+//			printf("%d ", i);
+//			num = i;
+//		}
+//	}
+//	printf("\n符合的最大的整数%d", num);
+//	return 0;
+//}
