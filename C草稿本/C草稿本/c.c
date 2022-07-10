@@ -579,3 +579,125 @@
 //	return 0;
 //}
 
+//#include <stdio.h> 
+//#include<math.h>
+//
+//int find_num(int arr[3][3], int* px, int* py, int k)
+//{
+//
+//}
+//
+//
+//
+//int main()
+//{
+//	int arr[3][3] = { 1,2,3,4,5,6,7,8,9 };
+//	int k = 0;
+//	scanf("%d", &k);
+//	int a = 3;
+//	int b = 3;
+//	int ret = find_num(arr, &a, &b, k);
+//	if (ret == 1)
+//		printf("%d %d\n", a, b);
+//	else
+//		printf("找不到\n");
+//	return 0;
+//
+//}
+
+//判断旋转字符串
+//#include <stdio.h> 
+//#include<string.h>
+//
+//int is_ieft_move(char arr1[], char arr2[])
+//{
+//	int len = strlen(arr1);
+//	int i = 0;
+//	for (i = 0; i < len; i++)
+//	{
+//		char tmp = arr1[0];
+//		int j = 0;
+//		for (i = 0; i < len; i++)
+//		{
+//			arr1[j] = arr1[j + 1];
+//		}
+//		arr1[len - 1] = tmp;
+//		if (strcmp(arr1, arr2) == 0)
+//		{
+//			return 1;
+//		}
+//		return 0;
+//	}
+//}
+//int main()
+//{
+//	char arr1[] = "abcdef";
+//	char arr2[] = "cdefab";
+//	int ret = is_ieft_move(arr1, arr2);
+//	if (ret == 1)
+//		printf("ok\n");
+//	else
+//		printf("No\n");
+//
+//	return 0;
+//}
+
+//#include <stdio.h> 
+//#include<string.h>
+//
+//int is_ieft_move(char arr1[], char arr2[])
+//{
+//	int len1 = strlen(arr1);
+//	int len2 = strlen(arr2);
+//	if (len1 != len2)
+//		return 0;//消除bug：两个字符串第二个只是arr1中的一部分
+//	strncat(arr1, arr2, len1);
+//	char* ret = strstr(arr1, arr2);
+//	if (ret == NULL) return 0;
+//	else return 1;
+//
+//}
+//int main()
+//{
+//	char arr1[20] = "abcdef";
+//	//abcdefabcdef   其中已经包括了所有旋转字符的可能，只用判断arr2是不是在arr1中间就OK
+//
+//	char arr2[] = "cdefab";
+//	int ret = is_ieft_move(arr1, arr2);
+//	if (ret == 1)
+//		printf("ok\n");
+//	else
+//		printf("No\n");
+//
+//	return 0;
+//}
+
+//矩阵转置
+//#include <stdio.h>
+//int main()
+//{
+//    int n = 0;
+//    int m = 0;
+//    scanf("%d %d", &n, &m);
+//    int arr[n][m];
+//    int i = 0, j = 0;
+//    for (i = 0; i < n; i++)
+//    {
+//        for (j = 0; j < m; j++)
+//        {
+//            scanf("%d", &arr[i][j]);
+//        }
+//    }
+//    //列
+//    for (i = 0; i < m; i++)
+//    {
+//        //行
+//        for (j = 0; j < n; j++)
+//        {
+//            printf("%d ", arr[j][i])
+//        }
+//        printf("\n");
+//    }
+//    return 0;
+//}
+

@@ -1,2 +1,4 @@
 ﻿  c.c
+D:\计算机学习\gitee\applet\C草稿本\C草稿本\c.c(650,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\计算机学习\gitee\applet\C草稿本\C草稿本\c.c(651,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
   C草稿本.vcxproj -> D:\计算机学习\gitee\applet\C草稿本\x64\Debug\C草稿本.exe
