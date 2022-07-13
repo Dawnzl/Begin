@@ -23,11 +23,20 @@ int missNum(int* nums, int numSize)
 
 	return ret1 - ret2;//所以时间复杂度是O（n）
 }
-int main()
+
+
+int missNum2(int* nums, int numSize)
 {
-	
+	int x = 0;
 	int i = 0;
-
-
-	return 0;
+	for (i = 0; i < numSize + 1; ++i)
+	{
+		x ^= i;//与有序的数值异或
+	}
+	for (i = 0; i < numSize; ++i)
+	{
+		x ^= nums[i];//再与缺少一个数的数组进行异或
+	}
+	return x;
 }
+
