@@ -43,15 +43,15 @@ int main()
 //}
 
 	//从低到高去找ret里面一个为1的位 j
-	int ret = 0;
-	int j = 0;
-	for (j = 0; j < 32; ++j)
-	{
-		if (ret & (1 << j))//如果成立则是找到ret中从左往右第一个为 1 的位：j 
-			break;
-	}
+	//int ret = 0;
+	//int j = 0;
+	//for (j = 0; j < 32; ++j)
+	//{
+	//	if (ret & (1 << j))//如果成立则是找到ret中从左往右第一个为 1 的位：j 
+	//		break;
+	//}
 
-
+	//顺序表
 
 
 	return 0;
