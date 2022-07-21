@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdio.h>
 
-int main()
+int main1()
 {
 	// ±º‰∏¥‘”∂»
 //int missNum(int* nums, int numSize)
