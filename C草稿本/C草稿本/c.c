@@ -730,10 +730,24 @@
 
 //malloc
 
- 
+#include<stdio.h>
+int* printNumbers(int n, int* returnSize)
+{
+    // write code here
+   /**/
+
+    *returnSize = pow(10, n) - 1;
+
+    int* res = malloc(sizeof(int) * (*returnSize));
+
+    for (int i = 1; i <= *returnSize; i++)
+    {
+        res[i - 1] = i;
+    }
+    return res;
+}
 int main()
 {
-	
-	return 0;
+   
 }
 
