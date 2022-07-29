@@ -4,6 +4,25 @@
 
 public class test {
     public static void main(String[] args) {
+        double sum = 0.0;
+        int flg = 1;
+        for (int i = 0; i <= 100; i++) {
+            sum = sum + 1.0/i * flg;
+            flg = -flg;
+        }
+        System.out.println(sum);
+    }
+    public static void main3(String[] args) {
+        int n = -1;
+        int count = 0;
+        for(int i = 0;i < 32;i++){
+            if(((n >> i) & 1) != 0){
+                count++;
+            }
+        }
+        System.out.println(count);
+    }
+    public static void main2(String[] args) {
         //逻辑控制
 
     }
@@ -30,7 +49,7 @@ public class test {
         System.out.println(-10%3);//-1
         System.out.println(10%-3);//1
         System.out.println(-10%-3);//-1
-    //java可以小数取余
+        //java可以小数取余
         System.out.println(-12.5%-10.5);//-2.0
 
 
