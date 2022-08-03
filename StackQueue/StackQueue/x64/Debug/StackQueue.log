@@ -1,4 +1,5 @@
 ﻿  Stack.c
   test.c
   正在生成代码...
+D:\计算机学习\gitee\applet\StackQueue\StackQueue\Stack.c(90): warning C4716: “myQueueCreate”: 必须返回一个值
   StackQueue.vcxproj -> D:\计算机学习\gitee\applet\StackQueue\x64\Debug\StackQueue.exe
