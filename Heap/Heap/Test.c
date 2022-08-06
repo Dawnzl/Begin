@@ -7,7 +7,7 @@
 void HeapSort(int* a, int n)
 {
 	//建堆 -> 时间复杂度是O(N)
-	for (int i = ((n - 1) - 1) / 2; i >= n; --i)//n-1是最后一个节点的下标,i是父节点
+	for (int i = ((n - 1) - 1) / 2; i >= 0; --i)//n-1是最后一个节点的下标,i是父节点
 	{
 		AdjustDown(a, n, i);
 	}
@@ -29,7 +29,10 @@ int main()
 	//AdjustDown(a, n, 0);
 	int a[] = { 15,18,28,34,65,19,49,25,37,27 };
 	int n = sizeof(a) / sizeof(a[0]);
-	//HeapSort(a, n);
+	HeapSort(a, n);
+	for (int i = 0; i < n; ++i)
+		printf("%d ", a[i]);
+	printf("\n\n");
 
 	HP hp;
 	HeapInit(&hp, a, n);
