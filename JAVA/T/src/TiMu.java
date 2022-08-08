@@ -1,8 +1,91 @@
 import java.util.Scanner;
 
+
 public class TiMu {
+    /**
+     * 求两个整数的最大值
+     * @param a
+     * @param b
+     * @return
+     */
+    public static int max(int a,int b){
+        return a > b ? a : b;
+    }
+
+    public static int max(int a,int b,int c){
+        int ret = max(a,b);
+        return ret > c ? ret : c;
+    }
 
     public static void main(String[] args) {
+        System.out.println(max(1, 2, 3));
+    }
+
+    public static void main13(String[] args) {
+        int num = 0;
+        int count = 0;
+        for (num = 1; num <= 100; num++) {
+            if (num % 10 == 9) {
+                count++;
+            }
+            if (num / 10 == 9) {
+                count++;
+            }
+        }
+        System.out.println(count);
+    }
+
+
+    public static void main12(String[] args) {
+        for(int year=1000;year<=2000;year++){
+            boolean Isleapyear=false;
+            if(year%4==0 && year % 100 !=0){
+                Isleapyear=true;
+            }
+            if(year%400==0){
+                Isleapyear=true;
+            }
+            if(Isleapyear){
+                System.out.print(year+" ");
+            }
+        }
+    }
+
+
+    public static void main11(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        int i=0;
+        for(i=2;i<a;i++){
+            if(a%i==0){
+                break;
+            }
+        }
+        if(i==a){
+            System.out.println("是素数");
+        }else{
+            System.out.println("不是素数");
+        }
+        sc.close();
+    }
+
+
+    public static void main10(String[] args) {
+        boolean flag = true;
+        for (int i = 2; i < 100; i++) {
+            for (int j = 2; j <= Math.sqrt(i); j++) {
+                if (i % j == 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag){
+                System.out.println(i);
+            }
+            flag = true;
+        }
+    }
+    public static void main9(String[] args) {
         int n = 7;
         for (int i = 31; i >= 1 ; i-=2) {
             System.out.println( ( (n>>i) & 1)+ " ");
