@@ -1,0 +1,9 @@
+#pragma
+
+#include<stdio.h>
+
+//≤Â»Î≈≈–Ú
+void InsertDort(int* a, int n);
+
+//œ£∂˚≈≈–Ú
+void ShellSort(int* a, int n);

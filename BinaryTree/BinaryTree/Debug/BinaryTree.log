@@ -1,0 +1,4 @@
+﻿  Test.c
+D:\计算机学习\gitee\applet\BinaryTree\BinaryTree\Test.c(88,46): warning C4554: “&”: 检查运算符优先级是否存在的可能的错误；使用括号阐明优先级
+D:\计算机学习\gitee\applet\BinaryTree\BinaryTree\Test.c(151,14): warning C4098: “BinaryTreeDestory”:“void”函数返回值
+  BinaryTree.vcxproj -> D:\计算机学习\gitee\applet\BinaryTree\Debug\BinaryTree.exe
