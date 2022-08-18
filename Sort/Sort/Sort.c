@@ -40,5 +40,8 @@ void InsertDort(int* a, int n)
 //Ï£¶ûÅÅĞò
 void ShellSort(int* a, int n)
 {
-    
+    int gap;
+    int end;
+    int tmp = a[end + gap];
+
 }
