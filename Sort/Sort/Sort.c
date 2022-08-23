@@ -40,8 +40,32 @@ void InsertDort(int* a, int n)
 //希尔排序
 void ShellSort(int* a, int n)
 {
-    int gap;
-    int end;
-    int tmp = a[end + gap];
+    int gap = n;
+    while (gap > 1)
+    {
+        // gap > 1的时候，预排序
+        // gap == 1的时候，直接插入排序
+        gap = (gap / 3 + 1);// +1是保证最后一次一定是1
+
+        for (int i = 0; i < n - gap; ++i)
+        {
+            int end = i;
+            int tmp = a[end + gap];
+            while (end >= 0)
+            {
+                if (tmp < a[end])
+                {
+                    a[end + gap] = a[end];
+                    end -= gap;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            a[end + gap] = tmp;
+        }
+
+    }
 
 }
