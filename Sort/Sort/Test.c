@@ -1,10 +1,23 @@
 #include"Sort.h"
 
+void TestInsertSort()
+{
+	int a[] = { 4,3,7,1,9,8,4,3,5 };
+	InsertDort(a, sizeof(a) / sizeof(int));
+	PrintArray(a, sizeof(a) / sizeof(int));
+}
+
+void TestShellSort()
+{
+	int a[] = { 4,3,7,1,9,8,4,3,5 };
+	ShellSort(a, sizeof(a) / sizeof(int));
+	PrintArray(a, sizeof(a) / sizeof(int));
+}
+
 int main()
 {
-	int arr[] = { 4,3,5,6,9,5,5,5,1,3,4 };
-
-	InsertDort(arr,)
+	TestShellSort();
 	return 0;
 
 }
+

@@ -44,7 +44,7 @@ void ShellSort(int* a, int n)
     while (gap > 1)
     {
         // gap > 1的时候，预排序
-        // gap == 1的时候，直接插入排序
+        // gap == 1的时候，直接插入排序 O（N）
         gap = (gap / 3 + 1);// +1是保证最后一次一定是1
 
         for (int i = 0; i < n - gap; ++i)
@@ -65,7 +65,16 @@ void ShellSort(int* a, int n)
             }
             a[end + gap] = tmp;
         }
-
+        //为了更清晰的感觉：
+        printf("gap:%d->", gap);
+        PrintArray(a, n);
     }
+
+}
+
+
+//选择排序
+void SelectSort(int* a, int n)
+{
 
 }
