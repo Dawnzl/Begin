@@ -72,9 +72,52 @@ void ShellSort(int* a, int n)
 
 }
 
+void Swap(int* a, int* b)
+{
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
 
 //选择排序
 void SelectSort(int* a, int n)
 {
+    int left = 0, right = n - 1;
+    while (left < right)
+    {
+        //选出最大的和最小的值（下标）
+        int minIndex = left;
+        int maxIndex = left;
+        for (int i = left; i <= right; ++i)
+        {
+            if (a[i] < a[minIndex])
+                minIndex = i;
 
+            if (a[i] > a[maxIndex])
+                maxIndex = i;
+        }
+        Swap(&a[left], &a[minIndex]);
+        // 如果最大值下标等于在left位置
+        // 一旦最小值调换到left位置上去
+        // 则最大值会被调换到原最小值位置
+        // 为避免这种情况，用此方法
+        if (left == maxIndex)
+        {
+            maxIndex = minIndex;
+        }
+        Swap(&a[right], &a[maxIndex]);
+        ++left;
+        --right;
+    }
+
+}
+
+//堆排序
+//排升序，建大堆
+void HeapSort(int* a, int n)
+{
+    for (int i = ((n - 1) - 1) / 2; i >= 0; --i)
+    {
+
+    }
 }
