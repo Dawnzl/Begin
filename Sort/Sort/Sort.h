@@ -18,4 +18,4 @@ void HeapSort(int* a, int n);
 
 //½»»»ÅÅÐò¡ª¡ªÃ°ÅÝÅÅÐò
 void BubbleSort(int* a, int n);
-void QuickSort(int* a, int n);
+void QuickSort(int* a, int begin, int end);

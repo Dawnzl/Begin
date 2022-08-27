@@ -179,21 +179,37 @@ void BubbleSort(int* a, int n)
 
 }
 
-//快速排序
-void QuickSort(int* a, int n)
+//快排的单趟排序 hoare版本——左右指针法
+int PartSort(int* a, int left, int right)
 {
-    int left = 0, right = n - 1;
     int keyi = left;
     while (left < right)
     {
         //找小
-        while (a[right] >= a[keyi])
+        while (left < right && a[right] >= a[keyi])
             --right;
         //找大
-        while (a[left] <= a[keyi])
+        while (left < right && a[left] <= a[keyi])
             ++left;
 
         Swap(&a[left], &a[right]);
     }
     Swap(&a[keyi], &a[left]);
+
+    return left;
+}
+
+//快速排序
+void QuickSort(int* a, int begin, int end)
+{
+    if (begin >= end)
+        return;
+
+    int keyi = PartSort(a, begin, end);
+    
+
+    // [begin, keyi-1] keyi [keyi+1, end]
+    QuickSort(a, begin, keyi - 1);
+    QuickSort(a, keyi + 1, end);
+
 }
