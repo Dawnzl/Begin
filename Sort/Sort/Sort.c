@@ -113,11 +113,87 @@ void SelectSort(int* a, int n)
 }
 
 //堆排序
+void AdjustDown(int* a, int n, int root)
+{
+    int parent = root;
+    int child = parent * 2 + 1;
+    while (child < n)
+    {
+        if (child + 1 < n && a[child + 1] > a[child])
+        {
+            ++child;
+        }
+
+        if (a[child] > a[parent])
+        {
+            Swap(&a[child], a[parent]);
+            parent = child;
+            child = parent * 2 + 1;
+        }
+        else break;
+    }
+}
+
 //排升序，建大堆
 void HeapSort(int* a, int n)
 {
     for (int i = ((n - 1) - 1) / 2; i >= 0; --i)
     {
-
+        AdjustDown(a, n, i);
     }
+    int end = n - 1;
+    while (end > 0)
+    {
+        Swap(&a[0], &a[end]);
+        AdjustDown(a, end, 0);
+        --end;
+    }
+}
+
+//交换排序——冒泡排序
+void BubbleSort(int* a, int n)
+{
+    //for (int end = n; end > n; end--)
+    //{
+    //    for (int i = 1; i < end; ++i)
+    //    {
+    //    }
+    //}
+    for (int j = 0; j < n; ++j)
+    {
+        int exchange = 0;
+        for (int i = 1; i < n - j; ++i)
+        {
+            if (a[i - 1] < a[i])
+            {
+                Swap(&a[i - 1], &a[i]);
+                exchange = 1;
+            }
+        }
+        //如果单趟下来不交换数值，这说明已经有序
+        if (exchange == 0)
+        {
+            break;
+        }
+    }
+
+}
+
+//快速排序
+void QuickSort(int* a, int n)
+{
+    int left = 0, right = n - 1;
+    int keyi = left;
+    while (left < right)
+    {
+        //找小
+        while (a[right] >= a[keyi])
+            --right;
+        //找大
+        while (a[left] <= a[keyi])
+            ++left;
+
+        Swap(&a[left], &a[right]);
+    }
+    Swap(&a[keyi], &a[left]);
 }

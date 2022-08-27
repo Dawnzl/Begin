@@ -12,3 +12,10 @@ void ShellSort(int* a, int n);
 
 //—°‘Ò≈≈–Ú
 void SelectSort(int* a, int n);
+//∂—≈≈–Ú
+void AdjustDown(int* a, int n, int root);
+void HeapSort(int* a, int n);
+
+//Ωªªª≈≈–Ú°™°™√∞≈›≈≈–Ú
+void BubbleSort(int* a, int n);
+void QuickSort(int* a, int n);
