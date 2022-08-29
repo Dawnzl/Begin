@@ -10,7 +10,7 @@ void PrintArray(int* a, int n)
 }
 
 //插入排序
-void InsertDort(int* a, int n)
+void InsertSort(int* a, int n)
 {
     //多趟排序
     for (int i = 0; i < n - 1; ++i)
@@ -179,9 +179,39 @@ void BubbleSort(int* a, int n)
 
 }
 
-//快排的单趟排序 hoare版本——左右指针法
-int PartSort(int* a, int left, int right)
+//三数取中
+int GetMidIndex(int* a, int left, int right)
 {
+    int mid = (left + right) >> 1;//相当于除以2，效率更高
+    // left  mid  right情况
+    if (a[left] < a[mid])
+    {
+        if (a[mid] < a[right])
+            return mid;
+        else if (a[left] > a[right])// 同时是a[mid] > a[right]
+            return left;
+        else //a[mid] > a[right] && a[right] >[left]
+            return right;
+    }
+    else // a[left] > a[mid]
+    {
+        if (a[mid] > a[right])
+            return mid;
+        else if (a[right] > a[left])
+            return left;
+        else
+            return right;
+    }
+}
+
+
+//快排的单趟排序 hoare版本——左右指针法
+int PartSort1(int* a, int left, int right)
+{
+    //排除最坏情况
+    int midIndex = GetMidIndex(a, left, right);
+    Swap(&a[left], &a[midIndex]);
+
     int keyi = left;
     while (left < right)
     {
@@ -199,17 +229,113 @@ int PartSort(int* a, int left, int right)
     return left;
 }
 
+//快排的单趟排序 挖坑法
+int PartSort2(int* a, int left, int right)
+{
+
+    //排除最坏情况
+    int midIndex = GetMidIndex(a, left, right);
+    Swap(&a[left], &a[midIndex]);
+
+    int key = a[left];
+    //直到相遇
+    while (left < right)
+    {
+        //找小
+        while (left < right && a[right] >= key)
+            --right;
+        // 放到左边的坑位中，右边形成新的坑
+        a[left] = a[right];
+
+        //找大
+        while (left < right && a[left] <= key)
+            ++left;
+        // 放到右边的坑位中，左边形成新的坑
+        a[right] = a[left];
+    }
+    
+    //相遇后一定是key的位置
+    a[left] = key;
+    return left;
+}
+
+//快排的单趟排序 前后指针法
+int PartSort3(int* a, int left, int right)
+{
+    //排除最坏情况
+    int midIndex = GetMidIndex(a, left, right);
+    Swap(&a[left], &a[midIndex]);
+
+    int keyi = left;
+    int prev = left, cur = left + 1;
+    while (cur <= right)
+    {
+        if (a[cur] < a[keyi] && ++prev != cur)
+        {
+            Swap(&a[cur], &a[prev]);
+        }
+        ++cur;
+    }
+
+    Swap(&a[keyi], &a[prev]);
+    return prev;
+
+}
+
+
 //快速排序
 void QuickSort(int* a, int begin, int end)
 {
     if (begin >= end)
         return;
 
-    int keyi = PartSort(a, begin, end);
-    
+    // 1、如果这个子区间是数据较多，继续选key单趟，分割子区间分治递归
+    // 2、如果这个子区间是数据较小，再去分治递归不划算
+    if (end - begin > 20)// 20可更改
+    {
+        int keyi = PartSort3(a, begin, end);
 
-    // [begin, keyi-1] keyi [keyi+1, end]
-    QuickSort(a, begin, keyi - 1);
-    QuickSort(a, keyi + 1, end);
+        // [begin, keyi-1] keyi [keyi+1, end]
+        QuickSort(a, begin, keyi - 1);
+        QuickSort(a, keyi + 1, end);
+    }
+    else //数据小于10就进行插入排序
+    {
+        InsertSort(a + begin, end - begin + 1);
+    }
+}
 
+#include"Stack.h"
+//非递归快排
+void QuickSortNonR(int* a, int begin, int end)
+{
+    Stack st;
+    StackInit(&st);
+    StackPush(&st, begin);
+    StackPush(&st, end);
+
+    while (!StackEmpty(&st))
+    {
+        int left, right;
+        right = StackTop(&st);
+        StackPop(&st);
+
+        left = StackTop(&st);
+        StackPop(&st);
+
+        int keyi = PartSort1(a, left, right);
+        if (left < keyi - 1)
+        {
+            StackPush(&st, left);
+            StackPush(&st, keyi - 1);
+        }
+
+        if (keyi + 1 < right)
+        {
+            StackPush(&st, keyi + 1);
+            StackPush(&st, right);
+        }
+    }
+
+    StackDestory(&st);
 }
