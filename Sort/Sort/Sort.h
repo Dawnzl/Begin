@@ -25,3 +25,7 @@ int PartSort2(int* a, int left, int right);
 int PartSort3(int* a, int left, int right);
 //∑«µ›πÈøÏ≈≈
 void QuickSortNonR(int* a, int left, int right);
+
+//πÈ≤¢≈≈–Ú
+void MergeSort(int* a, int n);
+void _MergeSort(int* a, int left, int right,int *tmp);

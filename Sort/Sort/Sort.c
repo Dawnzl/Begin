@@ -339,3 +339,61 @@ void QuickSortNonR(int* a, int begin, int end)
 
     StackDestory(&st);
 }
+
+// 递归子区间 时间复杂度O（N*logN）
+void _MergeSort(int* a, int left, int right, int* tmp)
+{
+    if (left >= right)
+        return;
+
+    int mid = (left + right) >> 1;
+    // [left,mid] [mid+1,right]
+    _MergeSort(a, left, mid, tmp);
+    _MergeSort(a, mid + 1, right, tmp);
+
+    // 两段有序子区间归并tmp，并且拷贝回a数组中
+    int begin1 = left, end1 = mid;
+    int begin2 = mid + 1, end2 = right;
+    int i = left;
+    while (begin1 <= end1 && begin2 <= end2)
+    {
+        if (a[begin1] < a[begin2])
+            tmp[i++] = a[begin1++];
+        else
+            tmp[i++] = a[begin2++];
+    }
+
+    // 剩余情况
+    while (begin1 <= end1)
+        tmp[i++] = a[begin1++];
+
+    while (begin2 <= end2)
+        tmp[i++] = a[begin2++];
+
+    // 归并完成以后，拷回去a数组中的原位置
+    for (int j = left; j <= right; ++j)
+    {
+        a[j] = tmp[j];
+    }
+}
+
+//归并排序  时间复杂度O（N）
+void MergeSort(int* a, int n)
+{
+    int* tmp = (int*)malloc(sizeof(int*) * n);
+    if (tmp == NULL)
+    {
+        printf("malloc fail\n");
+        exit(-1);
+    }
+
+    _MergeSort(a, 0, n - 1, tmp);
+
+    free(tmp);
+}
+
+// 非递归归并排序
+void MergeSortNonR(int* a, int n)
+{
+
+}
