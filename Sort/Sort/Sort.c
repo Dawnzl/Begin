@@ -392,8 +392,95 @@ void MergeSort(int* a, int n)
     free(tmp);
 }
 
+void _Merge(int* a, int* tmp, int begin1, int end1, int begin2, int end2)
+{
+
+    int i = begin1;//left
+    int j = begin1;//如果不提前定义，就会被++改变
+    while (begin1 <= end1 && begin2 <= end2)
+    {
+        if (a[begin1] < a[begin2])
+            tmp[i++] = a[begin1++];
+        else
+            tmp[i++] = a[begin2++];
+    }
+
+    // 剩余情况
+    while (begin1 <= end1)
+        tmp[i++] = a[begin1++];
+
+    while (begin2 <= end2)
+        tmp[i++] = a[begin2++];
+
+    // 归并完成以后，拷回去a数组中的原位置
+    for (; j <= end2; ++j)
+    {
+        a[j] = tmp[j];
+    }
+}
+
 // 非递归归并排序
 void MergeSortNonR(int* a, int n)
 {
+    int* tmp = (int*)malloc(sizeof(int*) * n);
+    if (tmp == NULL)
+    {
+        printf("malloc fail\n");
+        exit(-1);
+    }
+    
+    int gap = 1;
+    while (gap < n)
+    {
+        for (int i = 0; i < n; i += 2 * gap)
+        {
+            // [i, i+gap-1][i+gap, i+2*gap-1]
+            int begin1 = i, end1 = i + gap - 1, begin2 = i + gap, end2 = i + 2 * gap - 1;
 
+            // 如果第二个小区间不存在就不需要归并了，结束本次循环
+            if (begin2 >= n)
+                break;
+            // 如果第二个小区间存在，但是第二个小区间不够gap个，结束位置越界了，需要修正一下
+            if (end2 >= n)
+                end2 = n - 1;
+
+            _Merge(a, tmp, begin1, end1, begin2, end2);
+        }
+
+        gap *= 2;
+    }
+
+    free(tmp);
+}
+
+void CountSort(int* a, int n)
+{
+    int max = a[0], min = a[0];
+    for (int i = 1; i < n; ++i)
+    {
+        if (a[i] > max)
+            max = a[i];
+
+        if (a[i] < min)
+            min = a[i];
+    }
+
+    // 求数据范围
+    int range = max - min + 1;
+    int* count = malloc(sizeof(int) * range);
+    memset(count, 0, sizeof(int) * range);//初始化
+    for (int i = 0; i < n; ++i)
+    {
+        //相对映射出的下标
+        count[a[i] - min]++;
+    }
+
+    int i = 0;
+    for (int j = 0; j < range; ++j)
+    {
+        while (count[j]--)
+        {
+            a[i++] = j + min;
+        }
+    }
 }

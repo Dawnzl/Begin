@@ -1,6 +1,7 @@
 #pragma
 
 #include<stdio.h>
+#include <memory.h> 
 
 void PrintArray(int* a, int n);
 
