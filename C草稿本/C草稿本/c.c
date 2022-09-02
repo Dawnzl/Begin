@@ -729,25 +729,85 @@
 //}
 
 //malloc
+//
+//#include<stdio.h>
+//int* printNumbers(int n, int* returnSize)
+//{
+//    // write code here
+//   /**/
+//
+//    *returnSize = pow(10, n) - 1;
+//
+//    int* res = malloc(sizeof(int) * (*returnSize));
+//
+//    for (int i = 1; i <= *returnSize; i++)
+//    {
+//        res[i - 1] = i;
+//    }
+//    return res;
+//}
+//int main()
+//{
+//   
+//}
 
-#include<stdio.h>
-int* printNumbers(int n, int* returnSize)
-{
-    // write code here
-   /**/
 
-    *returnSize = pow(10, n) - 1;
 
-    int* res = malloc(sizeof(int) * (*returnSize));
+//#include<stdio.h>
+//#include <memory.h> 
+//#include<stdlib.h>
+//
+//
+//int main()
+//{
+//    int n = 0;
+//    scanf("%d", &n);
+//    int a[100] = { 0 };
+//    for (int i = 0; i < n; ++i)
+//    {
+//        scanf("%d", &a[i]);
+//    }
+//
+//    int max = a[0], min = a[0];
+//    int sum = a[0];
+//    for (int i = 1; i < n; ++i)
+//    {
+//        if (a[i] > max)
+//            max = a[i];
+//
+//        if (a[i] < min)
+//            min = a[i];
+//
+//        sum += a[i];
+//    }
+//    int p = sum / n;
+//    int z = (max + min) / 2;
+//    // 求数据范围
+//    int range = max - min + 1;
+//    int count[100] = { 0 };
+//
+//    for (int i = 0; i < n; ++i)
+//    {
+//        //相对映射出的下标
+//        count[a[i] - min]++;
+//    }
+//
+//    // int maxc=0;
+//    // BubbleSort(count,range);
+//    // if(count[0]==count[1])
+//    //     maxc=count[]
+//
+//    int maxsum = 0;
+//    for (int i = 1; i < range; ++i)
+//    {
+//        if (count[i] > count[maxsum])
+//            maxsum = i;
+//    }
+//
+//    printf("%d %d %d", z, p, maxsum + min);
+//    return 0;
+//}
 
-    for (int i = 1; i <= *returnSize; i++)
-    {
-        res[i - 1] = i;
-    }
-    return res;
-}
-int main()
-{
-   
-}
+
+//
 
