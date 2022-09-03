@@ -809,5 +809,52 @@
 //}
 
 
-//
+#include<stdio.h>
 
+int main()
+{
+    int N = 0;
+    while (scanf("%d", &N) != EOF)
+    {
+        int t[100] = { 0 };
+        int sum = 0;
+        for (int i = 0; i < N; ++i)
+        {
+            scanf("%d", &t[i]);
+            sum += t[i];
+        }
+
+        int max = sum;
+        int maxt = 0;
+        int begint = 0;
+        for (int begin = 0; begin < N; ++begin)
+        {
+            int tmp = N;
+            int ts = N - begin;//天数
+
+            int tsum = sum;//总重
+
+            if (tmp != N)//不是从第一天开始
+            {
+                for (int j = 0; j < begin; ++j)
+                    tsum -= t[j];
+            }
+
+            while (begin >= 0 && begin < (tmp--))
+            {
+                tsum -= t[tmp];//剪一次代表到第N-1天的成果
+
+                if (tsum > max)
+                {
+                    max = tsum;
+                    begint = begin + 1;
+                    maxt = tmp;//此时的最晚天
+                }
+            }
+
+        }
+
+        printf("%d %d %d\n", max, begint, maxt);
+    }
+
+}
