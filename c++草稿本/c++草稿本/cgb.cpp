@@ -17,7 +17,6 @@ int main()
     WP* W; // 设置物品
     int n = 0, V = 0;
     cin >> V >> n; // 物品个数，背包体积
-
     W = new WP[n];//开n个物品空间
     for (int i = 0; i < n; ++i)
     {
