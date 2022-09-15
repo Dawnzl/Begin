@@ -77,7 +77,7 @@ class Duck extends Animal implements IFlying,ISwimming,IRunning{
         System.out.println(name + "正在跑");
     }
 }
-class Roobot implements IRunning{
+class Robot implements IRunning{
     @Override
     public void running() {
         System.out.println("机器人正在跑");
@@ -96,9 +96,11 @@ public class Test3 {
         walk(new Dog("Huang",10) );
         walk(new Duck("Ming",10) );
         // 接口构造行为甚至可以————只要具备这个行为的东西就可以触发，不用继承
-        walk(new Roobot());
+        walk(new Robot());
         System.out.println("======================");
         func(new Dog("Huang",10));
         func(new Duck("Ming",10));
     }
 }
+
+
