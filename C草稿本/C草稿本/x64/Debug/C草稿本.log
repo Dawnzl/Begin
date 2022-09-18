@@ -1,3 +1,7 @@
 ﻿  c.c
 D:\计算机学习\gitee\applet\C草稿本\C草稿本\c.c(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  C草稿本.vcxproj -> D:\计算机学习\gitee\applet\C草稿本\x64\Debug\C草稿本.exe
+D:\计算机学习\gitee\applet\C草稿本\C草稿本\c.c(869,11): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+D:\计算机学习\gitee\applet\C草稿本\C草稿本\c.c(884,9): error C2001: 常量中有换行符
+D:\计算机学习\gitee\applet\C草稿本\C草稿本\c.c(885,2): error C2146: 语法错误: 缺少“)”(在标识符“gets”的前面)
+D:\计算机学习\gitee\applet\C草稿本\C草稿本\c.c(887,36): warning C4474: printf: 格式字符串中传递的参数太多
+D:\计算机学习\gitee\applet\C草稿本\C草稿本\c.c(887,36): message : 占位符和其参数预计 0 可变参数，但提供的却是 1 参数
